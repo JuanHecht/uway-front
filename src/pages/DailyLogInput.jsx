@@ -102,6 +102,7 @@ function DailyLogInput() {
 }
 
 export default DailyLogInput; */
+
 import axios from 'axios';
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
@@ -121,35 +122,6 @@ function DailyLogInput() {
   
   const navigate = useNavigate();
 
-  const handleSignUpSubmit = (e) => {
-    e.preventDefault();
-    const reqBody = {
-      mood,
-      bedTime: { wakeTime, sleepTime },
-      energyLevel,
-      mainFocus,
-      activities,
-      goals,
-      notes
-    };
-    
-    useEffect(()=>{
-
-      axios
-      .post("http://localhost:5005/logs/dailylogs", reqBody)
-      console.log(reqBody)
-      .then(() => {
-        navigate("/profile");
-      })
-      .catch((error) => {
-        const errorDescription = error.message;
-        setError(errorDescription);
-      });
-
-    }, [])  
-  };
-  
-  
   const handleAddActivity = () => {
     if (activityInput.trim() !== "") {
       setActivities([...activities, activityInput.trim()]);
@@ -163,6 +135,37 @@ function DailyLogInput() {
       setGoalInput(""); // Clear the input field
     }
   };
+
+  const handleSignUpSubmit = (e) => {
+    e.preventDefault();
+    const reqBody = {
+      mood,
+      bedTime: { wakeTime, sleepTime },
+      energyLevel,
+      mainFocus,
+      activities,
+      goals,
+      notes
+    };
+    
+   // useEffect(()=>{
+
+      axios
+      .post("http://localhost:5005/logs/dailylogs", reqBody)
+
+      .then(() => {
+        navigate("/profile");
+      })
+      .catch((error) => {
+        const errorDescription = error.message;
+        setError(errorDescription);
+      });
+
+  //  }, [])  
+  };
+  
+  
+
 
   
   return (
