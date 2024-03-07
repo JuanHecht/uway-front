@@ -1,111 +1,7 @@
-/* import axios from 'axios';
-import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-
-
-function DailyLogInput() {
-
-  const [mood, setMood] = useState(0);
-  const [bedTime, setBedTime] = useState({});
-  const [energyLevel, setEnergyLevel] = useState(0);
-  const [mainFocus, setMainFocus] = useState("");
-  const [activities, setActivities] = useState([]);
-  const [goals, setGoals] = useState([]);
-  const [notes, setNotes] = useState("");
-
-  const navigate = useNavigate();
-
-    const handleSignUpSubmit = (e) => {
-        e.preventDefault();
-        const reqBody = { mood, bedTime, energyLevel, mainFocus, activities, goals, notes};
-        axios
-          .post("http://localhost:5005/logs/dailylogs", reqBody)
-          .then(() => {
-            navigate("/profile");
-          })
-          .catch((error) => {
-            const errorDescription = error.data.message;
-            setError(errorDescription);
-          });
-      };
-  
-    return (
-        <form onSubmit={handleSignUpSubmit}>
-            <div>
-          <label>mood</label>
-          <input
-            type="number"
-            name="mood"
-            value={mood}
-           onChange={(e) => setMood(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Bed Time</label>
-          <input
-            type="number"
-            name="bedTime"
-            value={bedTime}
-           onChange={(e) => setBedTime(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Energy Level</label>
-          <input
-            type="number"
-            name="energyLevel"
-            value={energyLevel}
-           onChange={(e) => setEnergyLevel(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Main Focus</label>
-          <input
-            type="text"
-            name="mainFocus"
-            value={mainFocus}
-           onChange={(e) => setMainFocus(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Activities</label>
-          <input
-            type="text"
-            name="activities"
-            value={activities}
-           onChange={(e) => setActivities(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Goals</label>
-          <input
-            type="text"
-            name="goals"
-            value={goals}
-           onChange={(e) => setGoals(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Notes</label>
-          <input
-            type="text"
-            name="notes"
-            value={notes}
-           onChange={(e) => setNotes(e.target.value)}
-          />
-        </div>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-            </form>
-    )
-}
-
-export default DailyLogInput; */
-
 import axios from 'axios';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../context/auth.context";
 
 function DailyLogInput() {
   const [mood, setMood] = useState(0);
@@ -121,6 +17,8 @@ function DailyLogInput() {
   const [error, setError] = useState("");
   
   const navigate = useNavigate();
+
+  const { saveToken, authenticateUser } = useContext(AuthContext);
 
   const handleAddActivity = () => {
     if (activityInput.trim() !== "") {
@@ -151,9 +49,12 @@ function DailyLogInput() {
    // useEffect(()=>{
 
       axios
-      .post("http://localhost:5005/logs/dailylogs", reqBody)
-
-      .then(() => {
+      .post("http://localhost:5005/logs/dailylogs", reqBody,{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        }
+      })
+      .then((response) => {
         navigate("/profile");
       })
       .catch((error) => {

@@ -5,7 +5,7 @@ function Profile(){
     const {user} = useContext(AuthContext)
     return(
         <div>
-            <h1>Hello user we will put your name here {user.name}</h1>
+            <h1>Hello user we will put your name here {user.name}{user._id}</h1>
         </div>
     )
 }

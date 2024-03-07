@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Profile from './pages/Profile'
 import DailyLogInput from './pages/DailyLogInput'
 import Statistics from './pages/Statistics'
+import DailyLogEdit from './pages/DailyLogEdit'
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -16,7 +17,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/dailylog/create" element={<DailyLogInput />} />
-        <Route path="/dailylog/:id" element={<Statistics/>} />
+        <Route path="/dailylog/id" element={<Statistics/>} />
+        <Route path="/dailylogedit/:id" element={<DailyLogEdit/>} />
       </Routes>
     </div>
   )
