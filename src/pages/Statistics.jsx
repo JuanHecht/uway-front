@@ -3,6 +3,8 @@ import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import  { Link } from "react-router-dom";
 
+
+
 function Statistics() {
     const [dailyLogs, setDailyLogs] = useState([]);
 
@@ -26,12 +28,14 @@ function Statistics() {
             <p>Your dailylogs</p>
             {dailyLogs.map((dailyLog)=>{
                 return (
+                    <div>
                     <div key={dailyLog._id}>
                         <h3>Mood: {dailyLog.mood}</h3>
                         <p>Notes: {dailyLog.notes}</p>
                         <Link to={`/dailylogedit/${dailyLog._id}`}>
                             <button>Edit log</button>
                         </Link>
+                    </div>
                     </div>
                 )
             })}

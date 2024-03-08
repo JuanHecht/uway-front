@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../context/auth.context";
 
 function DailyLogInput() {
-  const [mood, setMood] = useState(0);
+  const {getMoodAndImageUrl} =  useContext(AuthContext);
+  const {moodNum} = getMoodAndImageUrl();
+  
+  const [mood, setMood] = useState("");
   const [wakeTime, setWakeTime] = useState("");
   const [sleepTime, setSleepTime] = useState("");
   const [energyLevel, setEnergyLevel] = useState(0);
@@ -73,7 +76,7 @@ function DailyLogInput() {
     <form onSubmit={handleSignUpSubmit}>
       {error && <p>{error}</p>}
       <div>
-        <label>Mood</label>
+        <label>Mood: {moodNum}</label>
         <input
           type="number"
           name="mood"

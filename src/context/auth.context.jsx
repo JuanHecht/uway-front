@@ -52,10 +52,35 @@ function AuthProviderWrapper(props) {
      authenticateUser();
    }, []);
 
-    
+   const getMoodAndImageUrl = (value) => {
+    let mood, imageUrl, moodNum;
+
+    if (value < 15) {
+      moodNum = 1
+      mood = "Very sad";
+      imageUrl = "/images/verysad_360.png";
+    } else if (value >= 15 && value <= 35) {
+      moodNum = 2
+      mood = "Sad";
+      imageUrl = "/images/sad_360.png";
+    } else if (value > 35 && value <= 65) {
+      moodNum = 3
+      mood = "Normal";
+      imageUrl = "/images/normal_360.png";
+    } else if (value > 65 && value <= 90) {
+      moodNum = 4
+      mood = "Happy";
+      imageUrl = "/images/happy_360.png";
+    } else {
+      moodNum = 5
+      mood = "Very happy";
+      imageUrl = "/images/veryhappy_360.png";
+    }
+    return { mood, moodNum, imageUrl };
+  };
 
   return(
-    <AuthContext.Provider value={{isLoggedIn, user, saveToken, authenticateUser, logOut}}>
+    <AuthContext.Provider value={{isLoggedIn, getMoodAndImageUrl, user, saveToken, authenticateUser, logOut}}>
         {props.children}
     </AuthContext.Provider>
   )

@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
 function Profile(){
-    const {user} = useContext(AuthContext)
+    const {user, logOut} = useContext(AuthContext)
     return(
         <div>
-            <h1>Hello user we will put your name here {user.name}{user._id}</h1>
+            <p>Hello user we will put your name here {user.name}{user._id}</p>
+            <button onClick={logOut}>Log Out</button>
         </div>
     )
 }
