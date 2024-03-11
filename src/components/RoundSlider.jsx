@@ -83,7 +83,7 @@ import {
             <SliderThumb />
           </Slider>
         </Box>
-        <Link to={'dailylog/create'}>
+        <Link to={'/dailylog/create'}>
             <Button mt="20px" colorScheme='teal'>Submit</Button>
         </Link>
       </Box>

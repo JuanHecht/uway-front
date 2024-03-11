@@ -1,0 +1,23 @@
+[
+    {
+      "activity": "Exercise",
+      "iconUrl": "https://react-icons.github.io/react-icons/icons?name=md&size=32&color=blue/md/md-fitness_center"
+    },
+    {
+      "activity": "Reading",
+      "iconUrl": "https://react-icons.github.io/react-icons/icons?name=md&size=32&color=green/md/md-book"
+    },
+    {
+      "activity": "Cooking",
+      "iconUrl": "https://react-icons.github.io/react-icons/icons?name=md&size=32&color=orange/md/md-restaurant"
+    },
+    {
+      "activity": "Work",
+      "iconUrl": "https://react-icons.github.io/react-icons/icons?name=md&size=32&color=red/md/md-work"
+    },
+    {
+      "activity": "Relaxing",
+      "iconUrl": "https://react-icons.github.io/react-icons/icons?name=md&size=32&color=purple/md/md-beach-access"
+    }
+  ]
+  

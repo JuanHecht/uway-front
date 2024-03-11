@@ -9,7 +9,9 @@ const API_URL = "http://localhost:5005";
 
 function AuthProviderWrapper(props) {
   const [user, setUser] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [moodNum, setMoodNum] = useState(null);
 
   /* Save the Login's JWT Token in our Browser' Storage */
   const saveToken = (token) => {
@@ -18,6 +20,7 @@ function AuthProviderWrapper(props) {
 
   /* Function that authenticates the user --> verifies if the token is a valid one. */
   const authenticateUser = () => {
+    setIsLoading(true);
     const storedToken = localStorage.getItem("authToken");
     if (storedToken) {
       axios
@@ -27,10 +30,12 @@ function AuthProviderWrapper(props) {
         .then((response) => {
           setUser(response.data);
           setIsLoggedIn(true);
+          setIsLoading(false);
         })
         .catch(()=>{
           setUser(null);
           setIsLoggedIn(false);
+          setIsLoading(false);
         })
     }
     else {
@@ -56,23 +61,23 @@ function AuthProviderWrapper(props) {
     let mood, imageUrl, moodNum;
 
     if (value < 15) {
-      moodNum = 1
+      setMoodNum(1);
       mood = "Very sad";
       imageUrl = "/images/verysad_360.png";
     } else if (value >= 15 && value <= 35) {
-      moodNum = 2
+      setMoodNum(2);
       mood = "Sad";
       imageUrl = "/images/sad_360.png";
     } else if (value > 35 && value <= 65) {
-      moodNum = 3
+      setMoodNum(3);
       mood = "Normal";
       imageUrl = "/images/normal_360.png";
     } else if (value > 65 && value <= 90) {
-      moodNum = 4
+      setMoodNum(4);
       mood = "Happy";
       imageUrl = "/images/happy_360.png";
     } else {
-      moodNum = 5
+      setMoodNum(5);
       mood = "Very happy";
       imageUrl = "/images/veryhappy_360.png";
     }
@@ -80,7 +85,7 @@ function AuthProviderWrapper(props) {
   };
 
   return(
-    <AuthContext.Provider value={{isLoggedIn, getMoodAndImageUrl, user, saveToken, authenticateUser, logOut}}>
+    <AuthContext.Provider value={{isLoggedIn, isLoading, getMoodAndImageUrl, moodNum,  user, saveToken, authenticateUser, logOut}}>
         {props.children}
     </AuthContext.Provider>
   )
