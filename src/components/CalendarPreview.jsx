@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
+import timeGridPlugin from '@fullcalendar/timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
 
-const MyCalendar = ({ dailyLogs }) => {
+const CalendarPreview = ({ dailyLogs }) => {
     const [loading, setLoading] = useState(true);
     const [formattedEvents, setFormattedEvents] = useState([]);
 
@@ -24,14 +25,12 @@ const MyCalendar = ({ dailyLogs }) => {
     };
 
     useEffect(() => {
-        console.log("Daily logs updated:", dailyLogs);
         if (dailyLogs.length > 0) {
             const formattedEvents = dailyLogs.map(dailyLog => ({
                 title: '', 
                 start: new Date(dailyLog.createdAt),
                 mood: dailyLog.mood 
             }));
-            console.log("Formatted events:", formattedEvents);
             setFormattedEvents(formattedEvents);
             setLoading(false);
         }
@@ -40,24 +39,20 @@ const MyCalendar = ({ dailyLogs }) => {
     if (loading) {
         return <div>Loading...</div>;
     }
-    if (!loading){
-        console.log("how it is supposed"+formattedEvents.map((log)=>{
-            return log.mood
-        }))
-    }
 
     return (
         <div>
             <FullCalendar
                 plugins={[dayGridPlugin]}
-                initialView="dayGridMonth"
+                initialView="dayGridWeek"
+                headerToolbar={false}
                 events={formattedEvents}
                 eventContent={({ event }) => (
-                    <img src={`${mapMoodToNameAndImage(event.extendedProps.mood)}`}  alt="" style={{ width: '100%', height: '100%' }} />
+                    <img src={mapMoodToNameAndImage(event.extendedProps.mood)} alt="" style={{ width: '100%', height: '100%' }} />
                 )}
             />
         </div>
     );
 };
 
-export default MyCalendar;
+export default CalendarPreview;

@@ -12,6 +12,7 @@ function AuthProviderWrapper(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [moodNum, setMoodNum] = useState(null);
+  const [dailyLogs, setDailyLogs] = useState([]);
 
   /* Save the Login's JWT Token in our Browser' Storage */
   const saveToken = (token) => {
@@ -57,6 +58,20 @@ function AuthProviderWrapper(props) {
      authenticateUser();
    }, []);
 
+
+
+   useEffect(() => {
+       if (user && user._id) { // Check if user and user._id are defined
+           axios.get(`http://localhost:5005/logs/dailylogs/${user._id}`, {
+               headers: {
+                   Authorization: `Bearer ${localStorage.getItem("authToken")}`
+               }
+           })
+               .then((response) => setDailyLogs(response.data))
+               .catch((error) => console.log(error));
+       }
+   }, [user]);
+
    const getMoodAndImageUrl = (value) => {
     let mood, imageUrl, moodNum;
 
@@ -85,7 +100,7 @@ function AuthProviderWrapper(props) {
   };
 
   return(
-    <AuthContext.Provider value={{isLoggedIn, isLoading, getMoodAndImageUrl, moodNum,  user, saveToken, authenticateUser, logOut}}>
+    <AuthContext.Provider value={{isLoggedIn, isLoading, getMoodAndImageUrl, moodNum,  user, saveToken, authenticateUser, logOut, dailyLogs}}>
         {props.children}
     </AuthContext.Provider>
   )

@@ -8,11 +8,11 @@ import MyCalendar from '../components/Calendar.jsx'
 
 
 function Statistics() {
-    const [dailyLogs, setDailyLogs] = useState([]);
+    /* const [dailyLogs, setDailyLogs] = useState([]); */
 
-    const { user } = useContext(AuthContext);
+    const { user, dailyLogs } = useContext(AuthContext);
 
-    useEffect(() => {
+    /* useEffect(() => {
         if (user && user._id) { // Check if user and user._id are defined
             axios.get(`http://localhost:5005/logs/dailylogs/${user._id}`, {
                 headers: {
@@ -22,7 +22,7 @@ function Statistics() {
                 .then((response) => setDailyLogs(response.data))
                 .catch((error) => console.log(error));
         }
-    }, [user]);
+    }, [user]); */
 
     return (
         <div>
