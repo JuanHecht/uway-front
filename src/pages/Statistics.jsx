@@ -1,14 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
+{/*import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import DailyLogCard from "../components/DailyLogCard.jsx";
 import MyCalendar from '../components/Calendar.jsx'
+import Charts from "../components/Charts.jsx";
 
 
 
 function Statistics() {
-    /* const [dailyLogs, setDailyLogs] = useState([]); */
+     const [dailyLogs, setDailyLogs] = useState([]); 
 
     const { user, dailyLogs } = useContext(AuthContext);
 
@@ -22,7 +23,7 @@ function Statistics() {
                 .then((response) => setDailyLogs(response.data))
                 .catch((error) => console.log(error));
         }
-    }, [user]); */
+    }, [user]); 
 
     return (
         <div>
@@ -32,9 +33,56 @@ function Statistics() {
                 dailyLogs.map((dailyLog) => (
                     <DailyLogCard key={dailyLog._id} dailyLog={dailyLog} />
                 ))
+                
             }
+            <Charts/>
+           
+        </div>
+    );
+}
+
+export default Statistics;*/}
+
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../context/auth.context";
+import DailyLogCard from "../components/DailyLogCard.jsx";
+import MyCalendar from '../components/Calendar.jsx';
+import Charts from "../components/Charts.jsx";
+import { Button } from "@chakra-ui/react";
+import OftenTogether from "../components/OftenTogether.jsx";
+
+function Statistics() {
+    const { user, dailyLogs } = useContext(AuthContext);
+    const [showDailyLogs, setShowDailyLogs] = useState(true);
+
+    const toggleComponent = (showDaily) => {
+        setShowDailyLogs(showDaily);
+    };
+
+    return (
+        <div>
+            <h1>Your Journey</h1>
+            <MyCalendar dailyLogs={dailyLogs} />
+            <div>
+                <Button colorScheme="green" onClick={() => toggleComponent(true)}>Show Daily Logs</Button>
+                <Button colorScheme="green" onClick={() => toggleComponent(false)}>Show Charts</Button>
+            </div>
+            {showDailyLogs ? (
+                <>
+                    
+                    {dailyLogs.map((dailyLog) => (
+                        <DailyLogCard key={dailyLog._id} dailyLog={dailyLog} />
+                    ))}
+                </>
+            ) : ( <>
+            <OftenTogether />
+                <Charts />
+                
+                </>
+            )}
         </div>
     );
 }
 
 export default Statistics;
+

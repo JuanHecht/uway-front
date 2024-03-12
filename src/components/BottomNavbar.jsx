@@ -50,7 +50,7 @@ const BottomNavBar = () => {
         </Link>
       </Box>
       <Box>
-      <Link to={"/"}>
+      <Link to={"/goals"}>
         <IconButton
           aria-label="Goals"
           icon={<Icon as={GoGoal} boxSize={7}  />}
