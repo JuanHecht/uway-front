@@ -1,0 +1,33 @@
+[
+    
+    {
+        "name": "Work",
+        "category": "Profession",
+        "iconUrl": "/icons/work.png"
+    },
+    {
+        "name": "Relax",
+        "category": "Relax",
+        "iconUrl": "/icons/relax.svg"
+    },
+    {
+        "name": "Training",
+        "category": "Exercise",
+        "iconUrl": "/icons/excercise.svg"
+    },
+    {
+        "name": "Self-care",
+        "category": "Well-being",
+        "iconUrl": "/icons/well-being.svg"
+    },
+    {
+        "name": "Studying",
+        "category": "Studying",
+        "iconUrl": "/icons/study.svg"
+    },
+    {
+        "name": "Socialize",
+        "category": "Socialize",
+        "iconUrl": "/icons/socialize.svg"
+    }
+]

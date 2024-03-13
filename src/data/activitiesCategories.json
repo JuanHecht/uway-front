@@ -1,0 +1,38 @@
+[
+    {
+        "category": "Well being",
+        "iconUrl": "/icons/well-being2.svg"
+    },
+    {
+        "category": "Exercise",
+        "iconUrl": "/icons/excercise2.svg"
+    },
+    {
+        "category": "Studying",
+        "iconUrl": "/icons/study2.svg"
+    },
+    {
+        "category": "Sports",
+        "iconUrl": "/icons/sport2.svg"
+    },
+    {
+        "category": "Profession",
+        "iconUrl": "/icons/work2.png"
+    },
+    {
+        "category": "Socialize",
+        "iconUrl": "/icons/socialize2.svg"
+    },
+    {
+        "category": "Chores/Responsabilities",
+        "iconUrl": "/icons/chores2.svg"
+    },
+    {
+        "category": "Relax",
+        "iconUrl": "/icons/relax2.svg"
+    },
+    {
+        "category": "Entertainment",
+        "iconUrl": "/icons/television2.svg"
+    }
+]

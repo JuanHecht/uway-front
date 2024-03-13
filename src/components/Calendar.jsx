@@ -24,14 +24,14 @@ const MyCalendar = ({ dailyLogs }) => {
     };
 
     useEffect(() => {
-        console.log("Daily logs updated:", dailyLogs);
+        /* console.log("Daily logs updated:", dailyLogs); */
         if (dailyLogs.length > 0) {
             const formattedEvents = dailyLogs.map(dailyLog => ({
                 title: '', 
                 start: new Date(dailyLog.createdAt),
                 mood: dailyLog.mood 
             }));
-            console.log("Formatted events:", formattedEvents);
+            /* console.log("Formatted events:", formattedEvents); */
             setFormattedEvents(formattedEvents);
             setLoading(false);
         }
@@ -40,11 +40,11 @@ const MyCalendar = ({ dailyLogs }) => {
     if (loading) {
         return <div>Loading...</div>;
     }
-    if (!loading){
+    /* if (!loading){
         console.log("how it is supposed"+formattedEvents.map((log)=>{
             return log.mood
         }))
-    }
+    } */
 
     return (
         <div>

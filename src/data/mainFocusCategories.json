@@ -8,6 +8,10 @@
         "iconUrl": "/icons/excercise2.svg"
     },
     {
+        "category": "Studying",
+        "iconUrl": "/icons/study2.svg"
+    },
+    {
         "category": "Sports",
         "iconUrl": "/icons/sport2.svg"
     },
@@ -18,6 +22,10 @@
     {
         "category": "Socialize",
         "iconUrl": "/icons/socialize2.svg"
+    },
+    {
+        "category": "Chores/Responsabilities",
+        "iconUrl": "/icons/chores2.svg"
     },
     {
         "category": "Relax",

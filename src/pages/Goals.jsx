@@ -1,4 +1,5 @@
 import MainFocus from "../components/MainFocus";
+import Activites from "../components/Activites";
 
 function Goals(){
     return(
@@ -8,6 +9,7 @@ function Goals(){
             <MainFocus/>
             <h1>Your daily activities shape your day</h1>
             <h3>To help you track them add your recurring activities</h3>
+            <Activites/>
         </div>
     )
 }

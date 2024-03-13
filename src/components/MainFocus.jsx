@@ -11,8 +11,7 @@ function MainFocus() {
     const [selectedIconUrl, setSelectedIconUrl] = useState("");
     const [error, setError] = useState("");
     
-    // Migrate both of this to a new context
-    // Get the mainfocuses
+    // Get the mainfocuses MIGRATE TO NEW CONTEXT
     useEffect(() => {
         axios.get(`http://localhost:5005/goals/mainfocus/${user._id}`, {
             headers: {

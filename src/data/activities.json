@@ -1,23 +1,63 @@
 [
     {
-      "activity": "Exercise",
-      "iconUrl": "https://react-icons.github.io/react-icons/icons?name=md&size=32&color=blue/md/md-fitness_center"
+      "name": "Excercise",
+      "category": "Exercise",
+      "iconUrl": "/icons/"
     },
     {
-      "activity": "Reading",
-      "iconUrl": "https://react-icons.github.io/react-icons/icons?name=md&size=32&color=green/md/md-book"
+      "name": "Reading",
+      "category": "Studying",
+      "iconUrl": "/icons/"
     },
     {
-      "activity": "Cooking",
-      "iconUrl": "https://react-icons.github.io/react-icons/icons?name=md&size=32&color=orange/md/md-restaurant"
+      "name": "Cooking",
+      "category": "Chores/Responsabilities",
+      "iconUrl": "/icons/"
     },
     {
-      "activity": "Work",
-      "iconUrl": "https://react-icons.github.io/react-icons/icons?name=md&size=32&color=red/md/md-work"
+      "name": "Work",
+      "category": "Profession",
+      "iconUrl": "/icons/"
     },
     {
-      "activity": "Relaxing",
-      "iconUrl": "https://react-icons.github.io/react-icons/icons?name=md&size=32&color=purple/md/md-beach-access"
+      "name": "TV",
+      "category":  "Entertainment",
+      "iconUrl": "/icons/television.svg"
+    },
+    {
+      "name": "Family",
+      "category": "Socialize",
+      "iconUrl": "/icons/"
+    },
+    {
+      "name": "Social Media",
+      "category": "Entertainment",
+      "iconUrl": "/icons/"
+    },
+    {
+      "name": "Gaming",
+      "category": "",
+      "iconUrl": "/icons/"
+    },
+    {
+      "name": "Shopping",
+      "category": "",
+      "iconUrl": "/icons/"
+    },
+    {
+      "name": "Friends",
+      "category": "Socialize",
+      "iconUrl": "/icons/"
+    },
+    {
+      "name": "",
+      "category": "",
+      "iconUrl": "/icons/"
+    },
+    {
+      "name": "",
+      "category": "",
+      "iconUrl": ""
     }
   ]
   
