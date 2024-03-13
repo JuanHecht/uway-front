@@ -5,13 +5,13 @@ import categoriesData from "../data/activitiesCategories.json";
 
 function Activites() {
     const { user } = useContext(AuthContext);
-    const [activites, setActivites] = useState([]);
+    const [activities, setActivites] = useState([]);
     const [newActivites, setNewActivites] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const [selectedIconUrl, setSelectedIconUrl] = useState("");
     const [error, setError] = useState("");
     
-    // Get the activites MIGRATE TO NEW CONTEXT
+    // Get the activities MIGRATE TO NEW CONTEXT
     useEffect(() => {
         axios.get(`http://localhost:5005/goals/activities/${user._id}`, {
             headers: {
@@ -22,7 +22,7 @@ function Activites() {
         .catch((error) => console.log(error));
     }, [user._id]);
 
-    // Posting new activites
+    // Posting new activities
 
     const handleNewActivitesSubmit = () => {
         const reqBody = {
@@ -31,7 +31,7 @@ function Activites() {
             icon: selectedIconUrl
         };
 
-        axios.post("http://localhost:5005/goals/add-activites", reqBody, {
+        axios.post("http://localhost:5005/goals/add-activities", reqBody, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
             }
@@ -62,7 +62,7 @@ function Activites() {
         <div style={{backgroundColor: "grey"}}>
             <div>
                 <h1>Main focuses</h1>
-                {activites.map((focus) => (
+                {activities.map((focus) => (
                     <div style={{display: "flex", backgroundColor: "lightgray", marginBottom: "10px"}} key={focus._id}>
                         <h2>{focus.name}</h2>
                         <img style={{height: 50}} src={focus.icon} alt={focus.name} />

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import categoriesData from "../data/mainFocusCategories.json";
+import {Flex, Avatar, Box, Text} from '@chakra-ui/react';
 
 function MainFocus() {
     const { user } = useContext(AuthContext);
@@ -63,12 +64,21 @@ function MainFocus() {
             <div>
                 <h1>Main focuses</h1>
                 {mainFocus.map((focus) => (
-                    <div style={{display: "flex", backgroundColor: "lightgray", marginBottom: "10px"}} key={focus._id}>
+                    <Flex key={focus._id} alignItems="center">
+                    <Avatar src={focus.icon} />
+                    <Box ml='3'>
+                      <Text fontWeight='bold'>
+                        {focus.name}
+                       </Text>
+                    </Box>
+                  </Flex>
+                  ))}
+                    {/* <div style={{display: "flex", backgroundColor: "lightgray", marginBottom: "10px"}} key={focus._id}>
                         <h2>{focus.name}</h2>
                         <img style={{height: 50}} src={focus.icon} alt={focus.name} />
                         <a href={focus.icon}></a>
-                    </div>
-                ))}
+                    </div> */}
+                
             </div>
             <div style={{ marginBottom: 70 }}>
                 <h1>Add new main focus</h1>

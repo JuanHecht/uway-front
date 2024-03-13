@@ -79,9 +79,10 @@ function DailyLogInput() {
   };
 
   return (
+    <Box m="4">
     <form onSubmit={handleSignUpSubmit}>
       {error && <p>{error}</p>}
-      <FormControl>
+      {/* <FormControl>
         <FormLabel>Mood</FormLabel>
         <Input
           type="number"
@@ -89,25 +90,34 @@ function DailyLogInput() {
           value={mood}
           onChange={(e) => setMood(e.target.value)}
         />
-      </FormControl>
-      <FormControl>
-        <FormLabel>Wake Time</FormLabel>
+      </FormControl> */}
+      <Box display="flex" justifyContent="center" >
+        <Box width="50%"  mr ="10%">
+      <FormControl display="flex" flexDirection="column" alignItems="center" >
+        <FormLabel mr="0" textAlign="center">Time you woke up today</FormLabel>
         <Input
+        
+        width="60%"
           type="time"
           name="wakeTime"
           value={wakeTime}
           onChange={(e) => setWakeTime(e.target.value)}
         />
       </FormControl>
-      <FormControl>
-        <FormLabel>Sleep Time</FormLabel>
+      </Box>
+      <Box width="50%">
+      <FormControl display="flex" flexDirection="column" alignItems="center">
+        <FormLabel ml="0" textAlign="center">Time you went to bed last night</FormLabel>
         <Input
+        width="60%"
           type="time"
           name="sleepTime"
           value={sleepTime}
           onChange={(e) => setSleepTime(e.target.value)}
         />
       </FormControl>
+      </Box>
+      </Box>
       <FormControl>
         <FormLabel>Energy Level</FormLabel>
         <Slider
@@ -250,6 +260,7 @@ function DailyLogInput() {
       </FormControl>
       <Button mb="200px" type="submit">Submit</Button>
     </form>
+    </Box>
   );
 }
 

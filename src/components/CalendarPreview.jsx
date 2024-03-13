@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { Box } from '@chakra-ui/react';
 
 const CalendarPreview = ({ dailyLogs }) => {
     const [loading, setLoading] = useState(true);
@@ -37,21 +38,25 @@ const CalendarPreview = ({ dailyLogs }) => {
     }, [dailyLogs]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <Box>Loading...</Box>;
     }
 
     return (
-        <div>
-            <FullCalendar
+        <Box>
+            <FullCalendar 
+                height="110px"
                 plugins={[dayGridPlugin]}
                 initialView="dayGridWeek"
                 headerToolbar={false}
                 events={formattedEvents}
+                dayCellContent={({ date }) => (
+                    <span className="text-xs" style={{ fontSize: '5px' }}>{date.getDate()}</span>
+                )}
                 eventContent={({ event }) => (
                     <img src={mapMoodToNameAndImage(event.extendedProps.mood)} alt="" style={{ width: '100%', height: '100%' }} />
                 )}
             />
-        </div>
+        </Box>
     );
 };
 

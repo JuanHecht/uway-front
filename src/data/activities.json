@@ -2,22 +2,22 @@
     {
       "name": "Excercise",
       "category": "Exercise",
-      "iconUrl": "/icons/"
+      "iconUrl": "/icons/excercise.svg"
     },
     {
       "name": "Reading",
       "category": "Studying",
-      "iconUrl": "/icons/"
+      "iconUrl": "/icons/study.svg"
     },
     {
       "name": "Cooking",
       "category": "Chores/Responsabilities",
-      "iconUrl": "/icons/"
+      "iconUrl": "/icons/chores.svg"
     },
     {
       "name": "Work",
       "category": "Profession",
-      "iconUrl": "/icons/"
+      "iconUrl": "/icons/work.svg"
     },
     {
       "name": "TV",
@@ -27,37 +27,37 @@
     {
       "name": "Family",
       "category": "Socialize",
-      "iconUrl": "/icons/"
+      "iconUrl": "/icons/family.svg"
     },
     {
       "name": "Social Media",
       "category": "Entertainment",
-      "iconUrl": "/icons/"
+      "iconUrl": "/icons/socialmedia.svg"
     },
     {
       "name": "Gaming",
-      "category": "",
-      "iconUrl": "/icons/"
+      "category": "Entertainment",
+      "iconUrl": "/icons/gaming.ssvg"
     },
     {
       "name": "Shopping",
-      "category": "",
-      "iconUrl": "/icons/"
+      "category": "Shopping",
+      "iconUrl": "/icons/shopping.svg"
     },
     {
       "name": "Friends",
       "category": "Socialize",
-      "iconUrl": "/icons/"
+      "iconUrl": "/icons/friends.svg"
     },
     {
-      "name": "",
-      "category": "",
-      "iconUrl": "/icons/"
+      "name": "Drawing",
+      "category": "Entertainment",
+      "iconUrl": "/icons/drawing.svg"
     },
     {
-      "name": "",
-      "category": "",
-      "iconUrl": ""
+      "name": "Music",
+      "category": "Entertainment",
+      "iconUrl": "/icons/music.svg"
     }
   ]
   
