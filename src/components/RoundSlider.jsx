@@ -1,94 +1,90 @@
 import {
-    Image,
-    Box,
-    Slider,
-    SliderTrack,
-    SliderFilledTrack,
-    SliderThumb,
-    SliderMark,
-    Button
-  } from '@chakra-ui/react';
-  
-  import { useState , useContext} from 'react';
-  import { Link } from 'react-router-dom';
-  import { AuthContext } from "../context/auth.context";
-  
-  function RoundSlider() {
-    const [sliderValue, setSliderValue] = useState(50);
-    const { getMoodAndImageUrl} = useContext(AuthContext);
+  Image,
+  Box,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderMark,
+  Button,
+  Text
+} from '@chakra-ui/react';
 
-  
-    const labelStyles = {
-      mt: '2',
-      ml: '-2.5',
-      fontSize: 'sm',
-    };
-  
-    /* const getMoodAndImageUrl = (value) => {
-      let mood, imageUrl;
-  
-      if (value < 15) {
-        mood = "Very sad";
-        imageUrl = "/images/verysad_360.png";
-      } else if (value >= 15 && value <= 35) {
-        mood = "Sad";
-        imageUrl = "/images/sad_360.png";
-      } else if (value > 35 && value <= 65) {
-        mood = "Normal";
-        imageUrl = "/images/normal_360.png";
-      } else if (value > 65 && value <= 90) {
-        mood = "Happy";
-        imageUrl = "/images/happy_360.png";
-      } else {
-        mood = "Very happy";
-        imageUrl = "/images/veryhappy_360.png";
-      }
-  
-      return { mood, imageUrl };
-    }; */
-  
-    const { mood, imageUrl } = getMoodAndImageUrl(sliderValue);
-  
-    return (
-      <Box>
-        <Box>
+import { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from "../context/auth.context";
+import CircularSlider from '@fseehawer/react-circular-slider';
+
+import { FaRegSmile } from 'react-icons/fa';
+const smileyIconUrl = FaRegSmile;
+
+function RoundSlider() {
+  const [sliderValue, setSliderValue] = useState(50);
+  const { getMoodAndImageUrl } = useContext(AuthContext);
+
+
+  const labelStyles = {
+    mt: '2',
+    ml: '-2.5',
+    fontSize: 'sm',
+  };
+
+  const { mood, imageUrl } = getMoodAndImageUrl(sliderValue);
+
+
+
+  return (
+    <Box>
+      <Box  display="flex" justifyContent="center" alignText="center">
+        <Text>How are you feeling today?</Text>
+      </Box>
+      <Box display="flex" justifyContent="center" flexDirection="column" alignItems="center" >
+        <Box mt="20px" position="relative">
+          
+          <Box >
+            <CircularSlider
+              value={sliderValue}
+              onChange={(value) => setSliderValue(value)}
+              min={0}
+              max={100}
+              knobColor="black"
+              progressColorFrom="red"
+              progressColorTo="green"
+              trackColor="#edede9"
+              dataIndex={sliderValue}
+              hideLabelValue
+              label="Mood"
+              labelColor="#4a5568"
+              knobSize={35}
+              progressSize={30}
+              trackSize={8}
+            />
+          </Box>
           <Image
-            borderRadius='full'
-            boxSize='150px'
             src={imageUrl}
-            alt=''
+            alt=""
+            position="absolute"
+            top="49%"
+            left="51%"
+            transform="translate(-50%, -50%)"
+            width="90%"
+            height="90%"
+            transition="transform 0.3s ease"
+            cursor="pointer"
           />
         </Box>
-  
-        <Box p={4} pt={6}>
-          <Slider aria-label='slider-ex-6' onChange={(val) => setSliderValue(val)}>
-            <SliderMark value={0} {...labelStyles}>
-              very sad
-            </SliderMark>
-            <SliderMark value={25} {...labelStyles}>
-              sad
-            </SliderMark>
-            <SliderMark value={50} {...labelStyles}>
-              normal
-            </SliderMark>
-            <SliderMark value={75} {...labelStyles}>
-              happy
-            </SliderMark>
-            <SliderMark value={100} {...labelStyles}>
-              very happy
-            </SliderMark>
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <SliderThumb />
-          </Slider>
+
+        <Box mb="50px" mt="20px">
+          <Link to="/dailylog/create" style={{ textDecoration: 'none' }}>
+            <Button bg="black" color="white" >
+              Submit
+            </Button>
+          </Link>
         </Box>
-        <Link to={'/dailylog/create'}>
-            <Button mt="20px" colorScheme='teal'>Submit</Button>
-        </Link>
       </Box>
-    );
-  }
-  
-  export default RoundSlider;
-  
+    </Box>
+  );
+}
+
+export default RoundSlider;
+

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { Box } from '@chakra-ui/react';
+import { Box, Text, Flex } from '@chakra-ui/react';
 
 const CalendarPreview = ({ dailyLogs }) => {
     const [loading, setLoading] = useState(true);
@@ -28,9 +28,9 @@ const CalendarPreview = ({ dailyLogs }) => {
     useEffect(() => {
         if (dailyLogs.length > 0) {
             const formattedEvents = dailyLogs.map(dailyLog => ({
-                title: '', 
+                title: '',
                 start: new Date(dailyLog.createdAt),
-                mood: dailyLog.mood 
+                mood: dailyLog.mood
             }));
             setFormattedEvents(formattedEvents);
             setLoading(false);
@@ -42,21 +42,27 @@ const CalendarPreview = ({ dailyLogs }) => {
     }
 
     return (
-        <Box>
-            <FullCalendar 
-                height="110px"
+        <Flex direction="column" textAlign="center">
+            <Text mb="10px">This week's preview</Text>
+            <FullCalendar
+                height="90px"
                 plugins={[dayGridPlugin]}
                 initialView="dayGridWeek"
                 headerToolbar={false}
                 events={formattedEvents}
-                dayCellContent={({ date }) => (
-                    <span className="text-xs" style={{ fontSize: '5px' }}>{date.getDate()}</span>
+                dayHeaderContent={({ date }) => (
+                    <span className="text-s" style={{ fontSize: '20px' }}>{date.toLocaleDateString('en-US', { weekday: 'short' })}</span>
                 )}
+                /* dayCellContent={({ date }) => (
+                    <span className="text-xs" style={{ fontSize: '10px' }}>{date.getDate()}</span>
+                )} */
                 eventContent={({ event }) => (
                     <img src={mapMoodToNameAndImage(event.extendedProps.mood)} alt="" style={{ width: '100%', height: '100%' }} />
                 )}
             />
-        </Box>
+
+
+        </Flex>
     );
 };
 

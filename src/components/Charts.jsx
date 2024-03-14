@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { LineChart, Text, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Area, AreaChart, ResponsiveContainer } from 'recharts';
 import { AuthContext } from "../context/auth.context";
+
 
 const Charts = () => {
     const { dailyLogs } = useContext(AuthContext);
@@ -37,23 +38,35 @@ const Charts = () => {
     });
 
     return (
-        <LineChart
-            width={400}
-            height={300}
-            fontSize={10}
-            data={last7DaysLogs}
-            margin={{ top: 5, right: 30, left: 20, bottom: 50 }}
-        >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis
-                dataKey="createdAt"
-                tickFormatter={formatDate} // Use tickFormatter to format the x-axis ticks
-            />
-            <YAxis dataKey= "mood" />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="mood" stroke="#8884d8" activeDot={{ r: 8 }} />
-        </LineChart>
+        <ResponsiveContainer width="80%"  >
+        <div style={{ position: 'relative', width: '100%' }}>
+            <AreaChart
+                width={400}
+                height={300}
+                fontSize={10}
+                data={last7DaysLogs}
+                margin={{ top: 5, right: 10, left: 10, bottom: 50 }}
+            >
+                <defs>
+                    <linearGradient id="mood" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+                        <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+                    </linearGradient>
+                </defs>
+                <XAxis
+                    dataKey="createdAt"
+                    tickFormatter={formatDate} // Use tickFormatter to format the x-axis ticks
+                />
+                <YAxis dataKey= "mood" />
+                <Area type="monotone" dataKey="mood"  stroke="#8884d8" fillOpacity={1} fill="url(#mood)" />
+                <Line type="monotone" dataKey="mood"  stroke="#8884d8" fillOpacity={1} fill="url(#mood)" />
+            </AreaChart>
+            <div style={{ position: 'absolute', top: '10%', left: '50%', transform: 'translate(-50%, -50%)', color: 'rgba(0, 0, 0, 0.5)' }}>
+                <Text>Recent Mood</Text>
+            </div>
+        </div>
+    </ResponsiveContainer>
+    
     );
 };
 

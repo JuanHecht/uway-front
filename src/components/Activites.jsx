@@ -1,18 +1,22 @@
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
+
 import { AuthContext } from "../context/auth.context";
+import { UserContext } from  "../context/user.context";
+
 import categoriesData from "../data/activitiesCategories.json";
 
 function Activites() {
     const { user } = useContext(AuthContext);
-    const [activities, setActivites] = useState([]);
+    const { activities } = useContext(UserContext);
+    /* const [activities, setActivites] = useState([]); */
     const [newActivites, setNewActivites] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const [selectedIconUrl, setSelectedIconUrl] = useState("");
     const [error, setError] = useState("");
     
     // Get the activities MIGRATE TO NEW CONTEXT
-    useEffect(() => {
+    /* useEffect(() => {
         axios.get(`http://localhost:5005/goals/activities/${user._id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
@@ -20,7 +24,7 @@ function Activites() {
         })
         .then((response) => setActivites(response.data))
         .catch((error) => console.log(error));
-    }, [user._id]);
+    }, [user._id]); */
 
     // Posting new activities
 

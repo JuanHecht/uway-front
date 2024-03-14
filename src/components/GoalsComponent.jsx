@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import { UserContext } from "../context/user.context";
+
 import categoriesData from "../data/goalsCategories.json";
 
 function GoalsComponent() {
     const { user } = useContext(AuthContext);
-    const [goals, setGoals] = useState([]);
+    const {goals} = useContext(UserContext);
+    /* const [goals, setGoals] = useState([]); */
     const [newGoals, setNewGoals] = useState("");
     const [notes, setNotes] = useState("");
     const [recurring, setRecurring] = useState("");
@@ -14,7 +17,7 @@ function GoalsComponent() {
     const [error, setError] = useState("");
 
     // Get the goals MIGRATE TO NEW CONTEXT
-    useEffect(() => {
+    /* useEffect(() => {
         axios.get(`http://localhost:5005/goals/goals/${user._id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
@@ -22,7 +25,7 @@ function GoalsComponent() {
         })
             .then((response) => setGoals(response.data))
             .catch((error) => console.log(error));
-    }, [user._id]);
+    }, [user._id]); */
 
     // Posting new goals
 

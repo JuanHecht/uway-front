@@ -8,7 +8,7 @@ import DailyLogInput from './pages/DailyLogInput'
 import Statistics from './pages/Statistics'
 import DailyLogEdit from './pages/DailyLogEdit'
 import Goals from './pages/Goals'
-import MonthlyLog from './pages/MonthlyLog'
+/* import MonthlyLog from './pages/MonthlyLog' */
 import IsPrivate from './components/IsPrivate'
 import { Routes, Route } from 'react-router-dom'
 import BottomNavBar from './components/BottomNavbar'
@@ -26,7 +26,7 @@ function App() {
         <Route path="/dailylog/id" element={<IsPrivate><Statistics /></IsPrivate>} />
         <Route path="/dailylogedit/:id" element={<IsPrivate><DailyLogEdit /></IsPrivate>} />
         <Route path="/goals" element={<IsPrivate><Goals/></IsPrivate>} />
-        <Route path="/monthlylog" element={<IsPrivate><MonthlyLog/></IsPrivate>} />
+        {/* <Route path="/monthlylog" element={<IsPrivate><MonthlyLog/></IsPrivate>} /> */}
       </Routes>
       <BottomNavBar/>
     </div>
