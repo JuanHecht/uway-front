@@ -19,7 +19,7 @@ function MainFocus() {
 
     // Get the mainfocuses MIGRATE TO NEW CONTEXT
     /* useEffect(() => {
-        axios.get(`https://uway-back.onrender.com//goals/mainfocus/${user._id}`, {
+        axios.get(`https://uway-back.onrender.com/goals/mainfocus/${user._id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
             }
@@ -37,7 +37,7 @@ function MainFocus() {
             icon: selectedIconUrl
         };
 
-        axios.post("https://uway-back.onrender.com//goals/add-mainfocus", reqBody, {
+        axios.post("https://uway-back.onrender.com/goals/add-mainfocus", reqBody, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
             }

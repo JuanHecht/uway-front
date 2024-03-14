@@ -75,7 +75,7 @@ function DailyLogInput() {
       notes
     };
 
-    axios.post("https://uway-back.onrender.com//logs/dailylogs", reqBody, {
+    axios.post("https://uway-back.onrender.com/logs/dailylogs", reqBody, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("authToken")}`
       }
@@ -281,7 +281,7 @@ function DailyLogInput() {
       notes
     };
 
-    axios.post("https://uway-back.onrender.com//logs/dailylogs", reqBody, {
+    axios.post("https://uway-back.onrender.com/logs/dailylogs", reqBody, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("authToken")}`
       }
@@ -489,7 +489,7 @@ function DailyLogInput() {
       notes
     };
 
-    axios.post("https://uway-back.onrender.com//logs/dailylogs", reqBody, {
+    axios.post("https://uway-back.onrender.com/logs/dailylogs", reqBody, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("authToken")}`
       }

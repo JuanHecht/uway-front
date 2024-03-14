@@ -24,7 +24,7 @@ function Login() {
     const reqBody = { email, password };
 
     axios
-      .post("https://uway-back.onrender.com//auth/login", reqBody)
+      .post("https://uway-back.onrender.com/auth/login", reqBody)
       .then((response) => {
         saveToken(response.data.authToken);
         authenticateUser();

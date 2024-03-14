@@ -62,7 +62,7 @@ function AuthProviderWrapper(props) {
 
    useEffect(() => {
        if (user && user._id) { // Check if user and user._id are defined
-           axios.get(`https://uway-back.onrender.com/logs/dailylogs/${user._id}`, {
+           axios.get(`https://uway-back.onrender.comlogs/dailylogs/${user._id}`, {
                headers: {
                    Authorization: `Bearer ${localStorage.getItem("authToken")}`
                }

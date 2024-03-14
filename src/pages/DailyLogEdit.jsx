@@ -37,7 +37,7 @@ function DailyLogEdit() {
     };
 
     useEffect(() => {
-        axios.get(`https://uway-back.onrender.com//logs/dailylogs/logdetail/${id}`, {
+        axios.get(`https://uway-back.onrender.com/logs/dailylogs/logdetail/${id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
             }
@@ -82,7 +82,7 @@ function DailyLogEdit() {
             notes
         };
 
-        axios.put(`https://uway-back.onrender.com//logs/dailylogs/${id}`, reqBody, {
+        axios.put(`https://uway-back.onrender.com/logs/dailylogs/${id}`, reqBody, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
             }
@@ -99,7 +99,7 @@ function DailyLogEdit() {
 
     const handleDelete = () => {
         axios
-          .delete(`https://uway-back.onrender.com//logs/dailylogs/${id}`)
+          .delete(`https://uway-back.onrender.com/logs/dailylogs/${id}`)
           .then(() => {
             navigate("/profile");
           })
@@ -249,7 +249,7 @@ function DailyLogEdit() {
     const { id } = useParams();
 
     useEffect(() => {
-        axios.get(`https://uway-back.onrender.com//logs/dailylogs/logdetail/${id}`, {
+        axios.get(`https://uway-back.onrender.com/logs/dailylogs/logdetail/${id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
             }
@@ -301,7 +301,7 @@ function DailyLogEdit() {
             notes
         };
 
-        axios.put(`https://uway-back.onrender.com//logs/dailylogs/${id}`, reqBody, {
+        axios.put(`https://uway-back.onrender.com/logs/dailylogs/${id}`, reqBody, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
             }
@@ -318,7 +318,7 @@ function DailyLogEdit() {
 
     const handleDelete = () => {
         axios
-          .delete(`https://uway-back.onrender.com//logs/dailylogs/${id}`)
+          .delete(`https://uway-back.onrender.com/logs/dailylogs/${id}`)
           .then(() => {
             navigate("/profile");
           })
