@@ -18,7 +18,7 @@ function GoalsComponent() {
 
     // Get the goals MIGRATE TO NEW CONTEXT
     /* useEffect(() => {
-        axios.get(`http://localhost:5005/goals/goals/${user._id}`, {
+        axios.get(`https://uway-back.onrender.com//goals/goals/${user._id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
             }
@@ -38,7 +38,7 @@ function GoalsComponent() {
             icon: selectedIconUrl
         };
 
-        axios.post("http://localhost:5005/goals/add-goals", reqBody, {
+        axios.post("https://uway-back.onrender.com//goals/add-goals", reqBody, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
             }

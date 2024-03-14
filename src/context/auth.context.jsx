@@ -5,7 +5,7 @@ import axios from "axios";
 // Initializing Context
 const AuthContext = React.createContext();
 
-const API_URL = "http://localhost:5005";
+const API_URL = "https://uway-back.onrender.com";
 
 function AuthProviderWrapper(props) {
   const [user, setUser] = useState("");
@@ -62,7 +62,7 @@ function AuthProviderWrapper(props) {
 
    useEffect(() => {
        if (user && user._id) { // Check if user and user._id are defined
-           axios.get(`http://localhost:5005/logs/dailylogs/${user._id}`, {
+           axios.get(`https://uway-back.onrender.com/logs/dailylogs/${user._id}`, {
                headers: {
                    Authorization: `Bearer ${localStorage.getItem("authToken")}`
                }

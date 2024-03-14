@@ -17,7 +17,7 @@ function Activites() {
     
     // Get the activities MIGRATE TO NEW CONTEXT
     /* useEffect(() => {
-        axios.get(`http://localhost:5005/goals/activities/${user._id}`, {
+        axios.get(`https://uway-back.onrender.com//goals/activities/${user._id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
             }
@@ -35,7 +35,7 @@ function Activites() {
             icon: selectedIconUrl
         };
 
-        axios.post("http://localhost:5005/goals/add-activities", reqBody, {
+        axios.post("https://uway-back.onrender.com//goals/add-activities", reqBody, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
             }

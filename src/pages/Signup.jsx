@@ -15,7 +15,7 @@ function SignUp() {
         e.preventDefault();
         const reqBody = { email, password, name };
         axios
-          .post("http://localhost:5005/auth/signup", reqBody)
+          .post("https://uway-back.onrender.com//auth/signup", reqBody)
           .then(() => {
             navigate("/login");
           })

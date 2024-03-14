@@ -7,7 +7,7 @@ import { AuthContext } from "../context/auth.context";
 // Initializing Context
 const UserContext = React.createContext();
 
-/* const API_URL = "http://localhost:5005"; */
+/* const API_URL = "https://uway-back.onrender.com"; */
 
 function UserProviderWrapper(props) {
   const { user } = useContext(AuthContext);
@@ -18,7 +18,7 @@ function UserProviderWrapper(props) {
   // Get mainfocuses
   useEffect(() => {
     if (user && user._id) {
-      axios.get(`http://localhost:5005/goals/mainfocus/${user._id}`, {
+      axios.get(`https://uway-back.onrender.com/goals/mainfocus/${user._id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`
         }
@@ -31,7 +31,7 @@ function UserProviderWrapper(props) {
   // Get activites
   useEffect(() => {
     if (user && user._id) {
-      axios.get(`http://localhost:5005/goals/activities/${user._id}`, {
+      axios.get(`https://uway-back.onrender.com/goals/activities/${user._id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`
         }
@@ -44,7 +44,7 @@ function UserProviderWrapper(props) {
   // Get Goals
   useEffect(() => {
     if (user && user._id) {
-      axios.get(`http://localhost:5005/goals/goals/${user._id}`, {
+      axios.get(`https://uway-back.onrender.com/goals/goals/${user._id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`
         }
