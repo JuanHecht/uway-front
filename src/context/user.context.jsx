@@ -26,7 +26,7 @@ function UserProviderWrapper(props) {
         .then((response) => setMainFocus(response.data))
         .catch((error) => console.log(error));
     }
-  }, [user._id]);
+  }, [user]);
 
   // Get activites
   useEffect(() => {
@@ -39,7 +39,7 @@ function UserProviderWrapper(props) {
         .then((response) => setActivites(response.data))
         .catch((error) => console.log(error));
     }
-  }, [user._id]);
+  }, [user]);
 
   // Get Goals
   useEffect(() => {
@@ -52,7 +52,7 @@ function UserProviderWrapper(props) {
         .then((response) => setGoals(response.data))
         .catch((error) => console.log(error));
     }
-  }, [user._id]);
+  }, [user]);
 
 
   return (
