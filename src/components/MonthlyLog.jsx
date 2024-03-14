@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from "../context/auth.context";
-import { Button, Select } from '@chakra-ui/react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { Box, Select, Text, Image } from '@chakra-ui/react';
+import OftenTogether from './OftenTogether';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Area, AreaChart, ResponsiveContainer } from 'recharts';
 
 function MonthlyLog() {
     const { dailyLogs, user } = useContext(AuthContext);
@@ -67,52 +68,58 @@ function MonthlyLog() {
     const averageMood = filteredLogs.length > 0 ? totalMood / filteredLogs.length : 0;
 
     return (
-        <div>
-            <Select onChange={handleMonthSelect} placeholder="Select month" style={{ margin: '10px' }}>
+        <Box>
+            <Select onChange={handleMonthSelect} placeholder="Select month" width="60%" ml="20px" mt="10px">
                 {monthNames.map((month, index) => (
                     <option key={index + 1} value={index + 1}>{month}</option>
                 ))}
             </Select>
+            <Box>
+                {selectedMonth ? (
+                    <Box>
+                        Mood for {monthNames[selectedMonth - 1]}: {averageMood} 
+                    </Box>
+                ) : (
+                    <Box>Select a month to view average mood</Box>
+                )}
+            </Box>
+          
             <div>
                 {selectedMonth ? (
-                    <div>
-                        Mood for {monthNames[selectedMonth - 1]}: {averageMood} <img src={mapMoodToNameAndImage(Math.round(averageMood))} alt="" />
-                    </div>
+                    <ResponsiveContainer style={{width:"100%"}}>
+                        <div style={{position:"relative", width:"100%", display:"flex", flexDirection:"column", justifyContent:"center"}} >
+                            <AreaChart
+                                width={360}
+                                height={300}
+                                fontSize={10}
+                                data={mergedLogs}
+                                margin={{ top: 20, right: 0, left: -40, bottom: 50 }}
+                            >
+                                <defs>
+                                    <linearGradient id="mood" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+                                        <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+                                    </linearGradient>
+                                </defs>
+                                <XAxis
+                                    dataKey="createdAt"
+                                    tickFormatter={formatDate} // Use tickFormatter to format the x-axis ticks
+                                />
+                                <YAxis dataKey="mood" />
+                                <Area type="monotone" dataKey="mood" stroke="#8884d8" fillOpacity={1} fill="url(#mood)" />
+                                <Line type="monotone" dataKey="mood" stroke="#8884d8" fillOpacity={1} fill="url(#mood)" />
+                            </AreaChart>
+                            <div style={{position:"relative", width:"100%"}} >
+                                <p>Recent Mood </p>
+                            </div>
+                        </div>
+                    </ResponsiveContainer>
                 ) : (
-                    <div>Select a month to view average mood</div>
+                    <Box>Select a month to view the chart</Box>
                 )}
             </div>
-            {/* Display filtered logs */}
-            {filteredLogs.map(log => (
-                <div key={log.id}>
-                    {log.mood}
-                </div>
-            ))}
-            <div>
-                {selectedMonth ? (
-                    <div>
-                        <LineChart
-                            width={400}
-                            height={300}
-                            data={mergedLogs}
-                            margin={{ top: 5, right: 30, left: 20, bottom: 50 }}
-                        >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis
-                                dataKey="createdAt"
-                                tickFormatter={formatDate} // Use tickFormatter to format the x-axis ticks
-                            />
-                            <YAxis dataKey="mood" />
-                            <Tooltip />
-                            <Legend />
-                            <Line type="monotone" dataKey="mood" stroke="#8884d8" activeDot={{ r: 8 }} />
-                        </LineChart>
-                    </div>
-                ) : (
-                    <div>Select a month to view the chart</div>
-                )}
-            </div>
-        </div>
+            
+        </Box>
     );
 }
 

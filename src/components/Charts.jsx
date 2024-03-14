@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 import { LineChart, Text, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Area, AreaChart, ResponsiveContainer } from 'recharts';
 import { AuthContext } from "../context/auth.context";
+import OftenTogether from './OftenTogether';
+
+import { Box } from '@chakra-ui/react';
 
 
 const Charts = () => {
@@ -38,14 +41,15 @@ const Charts = () => {
     });
 
     return (
-        <ResponsiveContainer width="80%"  >
-        <div style={{ position: 'relative', width: '100%' }}>
+        <div style={{width:"100%"}}>
+        <ResponsiveContainer >
+        <div style={{position:"relative", width:"100%", display:"flex", flexDirection:"column", justifyContent:"center"}} >
             <AreaChart
-                width={400}
+                width={350}
                 height={300}
                 fontSize={10}
                 data={last7DaysLogs}
-                margin={{ top: 5, right: 10, left: 10, bottom: 50 }}
+                margin={{ top: 20, right: 0, left: -40, bottom: 50 }}
             >
                 <defs>
                     <linearGradient id="mood" x1="0" y1="0" x2="0" y2="1">
@@ -61,12 +65,13 @@ const Charts = () => {
                 <Area type="monotone" dataKey="mood"  stroke="#8884d8" fillOpacity={1} fill="url(#mood)" />
                 <Line type="monotone" dataKey="mood"  stroke="#8884d8" fillOpacity={1} fill="url(#mood)" />
             </AreaChart>
-            <div style={{ position: 'absolute', top: '10%', left: '50%', transform: 'translate(-50%, -50%)', color: 'rgba(0, 0, 0, 0.5)' }}>
-                <Text>Recent Mood</Text>
-            </div>
+            <div style={{position:"relative", width:"100%"}} >
+                                <p>Recent Mood </p>
+                            </div>
         </div>
     </ResponsiveContainer>
-    
+  
+    </div>
     );
 };
 

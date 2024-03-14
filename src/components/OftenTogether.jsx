@@ -1,10 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from "../context/auth.context";
-import { Box, Heading } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, Td, Box, Heading } from "@chakra-ui/react"
 
 function OftenTogether() {
 
     const { dailyLogs, user } = useContext(AuthContext);
+  
+    const [goodActivityCounts, setGoodActivityCounts] = useState({});
+    const [badActivityCounts, setBadActivityCounts] = useState({});
 
 
     // Initialize variables to store sums and counts
@@ -57,45 +60,77 @@ function OftenTogether() {
         return totalSleepHours;
     } */
 
-    return (
-        <div >
-          {/* <Heading size="sm">{user.name} when you sleep more than 7 hours your energy level is {averageEnergyLevelMoreThan7}</Heading>
-           <Heading size="sm">{user.name} when you sleep les than 7 hours your energy level is {averageEnergyLevelLessThan7}</Heading>*/}
-            <Heading size="sm">Hey {user.name} you know when you have been feeling good and bad</Heading >
-            <Heading size="sm">Good days:</Heading>
-            {dailyLogs.map((item) => {
-                
-                if (item.mood > 3) {
-                    return (
-                        <div  key={item._id}>
-                            
-                            {item.activities && item.activities.map((activity) => (
-                                <div key={activity}>{activity}</div>
-                            ))}
-                        </div>
-                    );
-                } else {
-                    return null;
-                }
-            })}
-            <Heading size="sm">Not so good days:</Heading>
-            {dailyLogs.map((item) => {
-                if (item.mood < 3) {
-                    return (
-                        <div>
-                            
-                            {item.activities && item.activities.map((activity) => (
-                                <div key={activity}>{activity}</div>
-                            ))}
-                        </div>
-                    );
-                } else {
-                    return null;
-                }
-            })}
-        </div>
-    )
+    useEffect(() => {
+        const goodCounts = {};
+        dailyLogs.forEach(item => {
+            if (item.activities && item.mood>3) {
+                item.activities.forEach(activity => {
+                    goodCounts[activity] = (goodCounts[activity] || 0) + 1;
+                });
+            }
+        });
+        setGoodActivityCounts(goodCounts);
+    }, [dailyLogs]);
 
+    useEffect(() => {
+        const badCounts = {};
+        dailyLogs.forEach(item => {
+            if (item.activities && item.mood<3) {
+                item.activities.forEach(activity => {
+                    badCounts[activity] = (badCounts[activity] || 0) + 1;
+                });
+            }
+        });
+        setBadActivityCounts(badCounts);
+    }, [dailyLogs]);
+
+    return (
+        <Box mb="60px">
+    <Box>
+        <Heading size="sm">Hey {user.name}, you know what lifted your mood and what not</Heading>
+
+        <Heading size="sm">Good Activity Counts:</Heading>
+        <Table variant="simple">
+            <Thead>
+                <Tr>
+                    <Th>Activity</Th>
+                    <Th>Count</Th>
+                </Tr>
+            </Thead>
+            <Tbody>
+                {Object.keys(goodActivityCounts).map(activity => (
+                    <Tr key={activity}>
+                        <Td>{activity}</Td>
+                        <Td>{goodActivityCounts[activity]}</Td>
+                    </Tr>
+                ))}
+            </Tbody>
+        </Table>
+    </Box>
+
+    <Box>
+        
+
+        <Heading size="sm">Bad Activity Counts:</Heading>
+        <Table variant="simple">
+            <Thead>
+                <Tr>
+                    <Th>Activity</Th>
+                    <Th>Count</Th>
+                </Tr>
+            </Thead>
+            <Tbody>
+                {Object.keys(badActivityCounts).map(activity => (
+                    <Tr key={activity}>
+                        <Td>{activity}</Td>
+                        <Td>{badActivityCounts[activity]}</Td>
+                    </Tr>
+                ))}
+            </Tbody>
+        </Table>
+    </Box>
+</Box>
+    );
 }
 
-export default OftenTogether
+export default OftenTogether;
