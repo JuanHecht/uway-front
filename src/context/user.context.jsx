@@ -18,7 +18,7 @@ function UserProviderWrapper(props) {
   // Get mainfocuses
   useEffect(() => {
     if (user && user._id) {
-      axios.get(`https://uway-back.onrender.comgoals/mainfocus/${user._id}`, {
+      axios.get(`https://uway-back.onrender.com/goals/mainfocus/${user._id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`
         }
@@ -31,7 +31,7 @@ function UserProviderWrapper(props) {
   // Get activites
   useEffect(() => {
     if (user && user._id) {
-      axios.get(`https://uway-back.onrender.comgoals/activities/${user._id}`, {
+      axios.get(`https://uway-back.onrender.com/goals/activities/${user._id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`
         }
@@ -44,7 +44,7 @@ function UserProviderWrapper(props) {
   // Get Goals
   useEffect(() => {
     if (user && user._id) {
-      axios.get(`https://uway-back.onrender.comgoals/goals/${user._id}`, {
+      axios.get(`https://uway-back.onrender.com/goals/goals/${user._id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`
         }
