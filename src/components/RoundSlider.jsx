@@ -64,8 +64,8 @@ function RoundSlider() {
             src={imageUrl}
             alt=""
             position="absolute"
-            top="44%"
-            left="48%"
+            top="49%"
+            left="50%"
             transform="translate(-50%, -50%)"
             width="90%"
             height="90%"

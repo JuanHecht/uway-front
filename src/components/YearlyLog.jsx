@@ -7,4 +7,4 @@ function YearlyLog(){
         </Box>
     )
 }
-export default YearlyLog
+export default YearlyLog;
