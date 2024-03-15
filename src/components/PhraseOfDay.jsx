@@ -27,9 +27,9 @@ function PhraseOfDay() {
     const selectedPhrase = selectedPhraseIndex !== null ? phraseData[selectedPhraseIndex].phrase : "";
 
     return (
-        <Card textAlign="center" mb="10px" >
+        <Card p="0"  bg="#F7FAFC" textAlign="center"  m="10px" >
             <CardBody bg="">
-                <Text>{selectedPhrase}</Text>
+                <Text fontSize="sm">{selectedPhrase}</Text>
             </CardBody>
         </Card>
     );

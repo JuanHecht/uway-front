@@ -79,7 +79,7 @@ function DailyLogInput() {
       }
     })
       .then((response) => {
-        navigate("/profile");
+        navigate("/home");
       })
       .catch((error) => {
         const errorDescription = error.message;

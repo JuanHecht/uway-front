@@ -6,7 +6,20 @@ import { UserContext } from '../context/user.context'
 
 
 import categoriesData from "../data/mainFocusCategories.json";
-import { Flex, Avatar, Box, Text } from '@chakra-ui/react';
+import {
+    Box,
+    Flex,
+    Text,
+    Input,
+    Select,
+    Button,
+    Image,
+    Heading,
+    Card,
+    CardBody,
+    IconButton,
+    SimpleGrid
+  } from "@chakra-ui/react";
 
 function MainFocus() {
     const { user } = useContext(AuthContext);
@@ -65,67 +78,58 @@ function MainFocus() {
     };
 
     return (
-        <div style={{ backgroundColor: "grey" }}>
-            <div>
-                <h1>Main focuses</h1>
-                {mainFocus.map((focus) => (
-                    <Flex key={focus._id} direction="column" textAlign="center" justifyContent="center" alignItems="center" width="fit-content">
-                        <Box
-                            width="25px"
-                            height="25px"
-                            borderRadius="50%"
-                            overflow="hidden"
-                            backgroundColor="lightblue"
-                            padding="3px"
-                        >
-                            <img
-                                src={focus.icon}
-                                alt="Focus Icon"
-                                style={{ width: "100%", height: "100%" }}
-                            />
-                        </Box>
-                        <Box ml='2'>
-                            <Text fontWeight='bold'>
-                                {focus.name}
-                            </Text>
-                        </Box>
-                    </Flex>
-                ))}
-                {/* <div style={{display: "flex", backgroundColor: "lightgray", marginBottom: "10px"}} key={focus._id}>
-                        <h2>{focus.name}</h2>
-                        <img style={{height: 50}} src={focus.icon} alt={focus.name} />
-                        <a href={focus.icon}></a>
-                    </div> */}
-
-            </div>
-            <div style={{ marginBottom: 70 }}>
-                <h1>Add new main focus</h1>
-                <div>
-                    <label htmlFor="newMainFocus">New Main Focus:</label>
-                    <input
-                        type="text"
-                        id="newMainFocus"
-                        value={newMainFocus}
-                        onChange={(e) => setNewMainFocus(e.target.value)}
+        <Box m="4">
+        
+          <Heading mb="10px" textAlign="left" size="lg">Main focuses</Heading>
+          
+          <Box display="flex" justifyContent="space-around">
+          {mainFocus.map((focus) => (
+            <Box key={focus._id} p="0" ml="10px" display="flex" alignItems="center" flexDirection="column">
+               <Box>
+              <IconButton
+                      icon={<img src={focus.icon} alt={focus.name} style={{ maxWidth: "80%", maxHeight: "80%" }} />}
+                      borderRadius="full"
                     />
-                </div>
-                <div>
-                    <label htmlFor="category">Category:</label>
-                    <select
-                        id="category"
-                        value={selectedCategory}
-                        /* onChange={(e) => setSelectedCategory(e.target.value)} */
-                        onChange={handleCategoryChange}
-                    >
-                        <option value="">Select a category</option>
-                        {categoriesData.map((category, index) => (
-                            <option key={index} value={category.category}>{category.category}</option>
-                        ))}
-                    </select>
-                </div>
-                <button onClick={handleNewMainFocusSubmit}>Submit</button>
-            </div>
-        </div>
+                    </Box>
+                    <Box>
+                    <Text fontSize="10px">{focus.name}</Text>
+                    </Box>
+            </Box>
+            
+          ))}
+          </Box>
+         
+        
+
+        <Box marginBottom={30}>
+          <Text fontSize="20px" mt="30px" mb="15px" fontWeight="600">What helps you focus?</Text >
+          <Box mb="10px">
+            <label style={{fontWeight:"500", marginBottom:"10px"}}  htmlFor="newMainFocus">New Main Focus:</label>
+            <Input
+            mt="10px"
+              type="text"
+              id="newMainFocus"
+              value={newMainFocus}
+              onChange={(e) => setNewMainFocus(e.target.value)}
+            />
+          </Box>
+          <Box mb="10px">
+            <label style={{fontWeight:"500", marginBottom:"10px"}} htmlFor="category">Category:</label>
+            <Select
+            mt="10px"
+              id="category"
+              value={selectedCategory}
+              onChange={handleCategoryChange}
+            >
+              <option value="">Select a category</option>
+              {categoriesData.map((category, index) => (
+                <option key={index} value={category.category}>{category.category}</option>
+              ))}
+            </Select>
+          </Box>
+          <Button mt="10px" bg="black" color="white" onClick={handleNewMainFocusSubmit}>Submit</Button>
+        </Box>
+      </Box>
     );
 }
 

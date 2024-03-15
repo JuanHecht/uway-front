@@ -43,7 +43,7 @@ const CalendarPreview = ({ dailyLogs }) => {
 
     return (
         <Flex direction="column" textAlign="center">
-            <Text mb="10px">This week's preview</Text>
+            {/*<Text mb="10px">This week's preview</Text>*/}
             <FullCalendar
                 height="90px"
                 plugins={[dayGridPlugin]}

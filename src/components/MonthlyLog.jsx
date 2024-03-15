@@ -68,7 +68,7 @@ function MonthlyLog() {
     const averageMood = filteredLogs.length > 0 ? totalMood / filteredLogs.length : 0;
 
     return (
-        <Box>
+        <Box mt="30px" mb="50px">
             <Select onChange={handleMonthSelect} placeholder="Select month" width="60%" ml="20px" mt="10px">
                 {monthNames.map((month, index) => (
                     <option key={index + 1} value={index + 1}>{month}</option>
@@ -80,7 +80,7 @@ function MonthlyLog() {
                         Mood for {monthNames[selectedMonth - 1]}: {averageMood} 
                     </Box>
                 ) : (
-                    <Box>Select a month to view average mood</Box>
+                    <Box></Box>
                 )}
             </Box>
           
@@ -115,7 +115,7 @@ function MonthlyLog() {
                         </div>
                     </ResponsiveContainer>
                 ) : (
-                    <Box>Select a month to view the chart</Box>
+                    <Box></Box>
                 )}
             </div>
             

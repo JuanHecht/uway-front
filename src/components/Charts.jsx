@@ -65,9 +65,7 @@ const Charts = () => {
                 <Area type="monotone" dataKey="mood"  stroke="#8884d8" fillOpacity={1} fill="url(#mood)" />
                 <Line type="monotone" dataKey="mood"  stroke="#8884d8" fillOpacity={1} fill="url(#mood)" />
             </AreaChart>
-            <div style={{position:"relative", width:"100%"}} >
-                                <p>Recent Mood </p>
-                            </div>
+            
         </div>
     </ResponsiveContainer>
   

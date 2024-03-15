@@ -1,5 +1,17 @@
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
+import {
+    Box,
+    Flex,
+    Heading,
+    Input,
+    Select,
+    Button,
+    IconButton,
+    Text,
+    Wrap
+  } from '@chakra-ui/react'
+
 
 import { AuthContext } from "../context/auth.context";
 import { UserContext } from  "../context/user.context";
@@ -45,7 +57,7 @@ function Activites() {
             setNewActivites("");
             setSelectedCategory("");
             setSelectedIconUrl("");
-            navigate("/profile");
+            navigate("/goals");
         })
         .catch((error) => {
             // handle error
@@ -63,48 +75,59 @@ function Activites() {
     };
 
     return (
-        <div style={{backgroundColor: "grey"}}>
-            <div>
-                <h1>Main focuses</h1>
-                {activities.map((focus) => (
-                    <div style={{display: "flex", backgroundColor: "lightgray", marginBottom: "10px"}} key={focus._id}>
-                        <h2>{focus.name}</h2>
-                        <img style={{height: 50}} src={focus.icon} alt={focus.name} />
-                        <a href={focus.icon}></a>
-                    </div>
-                ))}
-            </div>
-            <div style={{ marginBottom: 70 }}>
-                <h1>Add new main focus</h1>
-                <div>
-                    <label htmlFor="newActivites">New Main Focus:</label>
-                    <input
-                        type="text"
-                        id="newActivites"
-                        value={newActivites}
-                        onChange={(e) => setNewActivites(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="category">Category:</label>
-                    <select
-                        id="category"
-                        value={selectedCategory}
-                        /* onChange={(e) => setSelectedCategory(e.target.value)} */
-                        onChange={handleCategoryChange}
-                    >
-                        <option value="">Select a category</option>
-                        {categoriesData.map((category, index) => (
-                            <option key={index} value={category.category}>{category.category}</option>
-                        ))}
-                    </select>
-                </div>
-                <button onClick={handleNewActivitesSubmit}>Submit</button>
-            </div>
-        </div>
+        <Box m="4">
+  <Heading mb="10px" textAlign="left" size="lg">Activities</Heading>
+  <Wrap spacing="10px" p="0" justify="center">
+  {activities.map((focus) => (
+    <Box key={focus._id} p="0"  display="flex" alignItems="center" flexDirection="column">
+      <Box display="block" textAlign="center">
+        <IconButton
+          icon={<img src={focus.icon} alt={focus.name} style={{ maxWidth: "80%", maxHeight: "80%" }} />}
+          borderRadius="full"
+        />
+      </Box>
+      <Box display="block" textAlign="center">
+        <Text fontSize="10px">{focus.name}</Text>
+      </Box>
+    </Box>
+  ))}
+</Wrap>
+  <Box marginBottom={30}>
+  <Text fontSize="20px" mt="30px" mb="15px" fontWeight="600">Add an activity</Text >
+  <Box mb="10px">
+            <label style={{fontWeight:"500", marginBottom:"10px"}}  htmlFor="newActivites">New Activity</label>
+            <Input
+            mt="10px"
+              type="text"
+              id="newActivites"
+              value={newActivites}
+              onChange={(e) => setNewActivites(e.target.value)}
+            />
+          </Box>
+    <Box mb="10px">
+   
+      <label style={{fontWeight:"500", marginBottom:"10px"}} htmlFor="category">Category</label>
+      <Select
+       mt="10px"
+        id="category"
+        value={selectedCategory}
+        onChange={handleCategoryChange}
+        placeholder="Select a category"
+      >
+        {categoriesData.map((category, index) => (
+          <option key={index} value={category.category}>
+            {category.category}
+          </option>
+        ))}
+      </Select>
+    </Box>
+    <Button  mt="10px" bg="black" color="white" onClick={handleNewActivitesSubmit}>Submit</Button>
+  </Box>
+</Box>
     );
 }
 
 export default Activites;
 
+ 
 

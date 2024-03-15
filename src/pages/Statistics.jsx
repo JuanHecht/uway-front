@@ -3,7 +3,7 @@ import { AuthContext } from "../context/auth.context";
 import DailyLogCard from "../components/DailyLogCard.jsx";
 import MyCalendar from '../components/Calendar.jsx';
 import Charts from "../components/Charts.jsx";
-import { Switch, Box, Button, Flex } from "@chakra-ui/react";
+import { Switch, Box, Button, Heading } from "@chakra-ui/react";
 import OftenTogether from "../components/OftenTogether.jsx";
 import YearlyLog from "../components/YearlyLog.jsx";
 import MonthlyLog from "../components/MonthlyLog.jsx";
@@ -22,14 +22,21 @@ function Statistics() {
     };
 
     return (
-        <Box>
-            <h1>Your Journey</h1>
+        <Box m="1">
+            <Heading>Your Journey</Heading>
             <MyCalendar dailyLogs={dailyLogs} />
-            <Box>
-                <Switch colorScheme="green" isChecked={!showDailyLogs} onChange={toggleComponent}>Show Daily Logs</Switch>
-            </Box>
+            <Box textAlign="center" fontWeight="bold" mt="20px" mb="20px">
+            <Switch
+                colorScheme="green"
+                isChecked={!showDailyLogs}
+                onChange={toggleComponent}
+            >
+                {showDailyLogs ? "Reports" : "Daily Logs"}
+            </Switch>
+        </Box>
             {showDailyLogs ? (
                 <>
+                <Heading textAlign="center" fontSize="lg">Pick a Date</Heading>
                     {dailyLogs.map((dailyLog) => (
                         <DailyLogCard key={dailyLog._id} dailyLog={dailyLog} />
                     ))}

@@ -23,8 +23,8 @@ const BottomNavBar = () => {
 >
       
 
-      <Box>
-      <Link to={"/"}>
+      <Box display="flex" alignItems="center" >
+      <Link to={"/home"}>
         <IconButton
           aria-label="Home"
           icon={<Icon as={FaHome} boxSize={9} />}
@@ -33,10 +33,10 @@ const BottomNavBar = () => {
           height ="10px"
           mt="5px"
         />
-        <Text fontSize="10px" mt="6px">Home</Text>
+        <Text textAlign="center" fontSize="10px" mt="6px">Home</Text>
         </Link>
       </Box>
-      <Box>
+      <Box display="flex" alignItems="center">
       <Link to={"/dailylog/id"}>
         <IconButton
           aria-label="Journey"
@@ -46,10 +46,10 @@ const BottomNavBar = () => {
           height ="10px"
           mt="5px"
         />
-        <Text fontSize="10px" mt="6px">Joruney</Text>
+        <Text textAlign="center" fontSize="10px" mt="6px">Journey</Text>
         </Link>
-      </Box>
-      <Box>
+      </Box >
+      <Box display="flex" alignItems="center">
       <Link to={"/goals"}>
         <IconButton
           aria-label="Goals"
@@ -59,10 +59,10 @@ const BottomNavBar = () => {
           height ="10px"
           mt="5px"
         />
-        <Text fontSize="10px" mt="6px">Goals</Text>
+        <Text textAlign="center" fontSize="10px" mt="6px">Goals</Text>
         </Link>
-      </Box>
-      <Box>
+      </Box >
+      <Box display="flex" alignItems="center">
       <Link to={"/profile"}>
         <IconButton
           aria-label="Profile"
@@ -72,7 +72,7 @@ const BottomNavBar = () => {
           height ="10px"
           mt="5px"
         />
-        <Text fontSize="10px" mt="6px">Profile</Text>
+        <Text textAlign="center" fontSize="10px" mt="6px">Profile</Text>
         </Link>
       </Box>
     </Flex>

@@ -1,4 +1,4 @@
-/* import React, { useState, useEffect } from "react";
+/*import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
@@ -226,7 +226,8 @@ import {
     SliderThumb,
     Input,
     Text,
-    Box
+    Box,
+    Heading
   } from '@chakra-ui/react';
 import { FaRunning, FaBicycle, FaSwimmer, FaBookOpen, FaGamepad } from 'react-icons/fa';
 
@@ -320,14 +321,15 @@ function DailyLogEdit() {
         axios
           .delete(`https://uway-back.onrender.com/logs/dailylogs/${id}`)
           .then(() => {
-            navigate("/profile");
+            navigate("/home");
           })
           .catch((error) => console.log(error));
       };
 
     // Render logic here
     return (
-        <div>
+        <Box m="4">
+          <Heading>Feeling something different</Heading>
         <form onSubmit={handleUpdateSubmit}>
       {error && <p>{error}</p>}
       <FormControl>
@@ -497,12 +499,17 @@ function DailyLogEdit() {
           onChange={(e) => setNotes(e.target.value)}
         />
       </FormControl>
-      <Button mb="200px" type="submit">Update</Button>
-    </form>
-        <Box>
-            <Button onClick={handleDelete}>Delete log</Button>
+      <Box mt="20px" display="flex"  justifyContent="space-evenly">
+      <Box>
+      <Button colorScheme="green" size="sm" mb="50px" type="submit">Update</Button>
+      </Box>
+      <Box>
+            <Button colorScheme="red" size="sm" mb="50px" onClick={handleDelete}>Delete</Button>
         </Box>
-        </div>
+        </Box>
+    </form>
+       
+        </Box >
     );
 }
 
