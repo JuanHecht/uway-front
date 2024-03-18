@@ -31,7 +31,7 @@ function DailyLogInput() {
   const [mood, setMood] = useState(moodNum);
   const [wakeTime, setWakeTime] = useState("");
   const [sleepTime, setSleepTime] = useState("");
-  const [energyLevel, setEnergyLevel] = useState(0);
+  const [energyLevel, setEnergyLevel] = useState(5);
   const [selectedMainFocus, setSelectedMainFocus] = useState("");
   const [selectedActivities, setSelectedActivities] = useState([]);
   const [selectedGoals, setSelectedGoals] = useState([]);
@@ -40,6 +40,7 @@ function DailyLogInput() {
   const [showAllActivities, setShowAllActivities] = useState(false);
   const [showAllGoals, setShowAllGoals] = useState(false);
   const [showAllFocus, setshowAllFocus] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -61,15 +62,48 @@ function DailyLogInput() {
     }
   };
 
+  //  Validation for form submission
+  const validateForm = () => {
+    let validated = true;
+    let errorText = "";
+
+    // Check that the user has entered a note or added at least one activity and
+    // one goal to their day
+    if (!notes || !wakeTime || !sleepTime || !selectedMainFocus) {
+      validated = false;
+      if (!notes) {
+        errorText += "* Please enter at least one note for your day.\n";
+      }
+      if ( !wakeTime) {
+        errorText += "* Please add your wake time.\n";
+      }
+      if ( !selectedMainFocus) {
+        errorText += "* Please select an option for main focus.\n";
+      }
+      if (!sleepTime) {
+        errorText += "* Please add yesterday's bedtime.";
+      }
+    }
+
+    setErrorMessage(errorText);
+    return validated;
+  };
   const handleSignUpSubmit = (e) => {
     e.preventDefault();
+
+    if (!selectedMainFocus || !wakeTime || !sleepTime || !energyLevel || !notes) {
+      setError("Please fill in all required fields.");
+      validateForm();
+      return; // Prevent form submission
+    }
+
     const reqBody = {
       mood,
       bedTime: { wakeTime, sleepTime },
       energyLevel,
       mainFocus: selectedMainFocus,
       activities: selectedActivities,
-      goals,
+      goals:  selectedGoals,
       notes
     };
 
@@ -91,7 +125,6 @@ function DailyLogInput() {
     <Box m="4">
       <Heading textAlign="center" mb={10}>How's your day going?</Heading>
       <form onSubmit={handleSignUpSubmit}>
-        {error && <p>{error}</p>}
         <FormControl mb="50px" textAlign="center">
           <FormLabel mb="5" textAlign="center">What is your main focus for today?</FormLabel>
           <SimpleGrid spacing={1} columns="5">
@@ -180,7 +213,7 @@ function DailyLogInput() {
           <SimpleGrid spacing={1} columns="5">
             {showAllActivities
               ? activities.map((activity, index) => (
-                  <Box key={index} onClick={() => handleAddActivity(activity.name)}>
+                  <Box key={index} onClick={() => handleAddActivity(activity)}>
                     <IconButton
                       icon={<img src={activity.icon} alt={activity.name} style={{ maxWidth: "80%", maxHeight: "80%" }} />}
                       colorScheme={selectedActivities.includes(activity.name) ? "green" : "gray"}
@@ -190,10 +223,10 @@ function DailyLogInput() {
                   </Box>
                 ))
               : activities.slice(0, 5).map((activity, index) => (
-                  <Box key={index} onClick={() => handleAddActivity(activity.name)}>
+                  <Box key={index} onClick={() => handleAddActivity(activity)}>
                     <IconButton
                       icon={<img src={activity.icon} alt={activity.name} style={{ maxWidth: "80%", maxHeight: "80%" }} />}
-                      colorScheme={selectedActivities.includes(activity.name) ? "green" : "gray"}
+                      colorScheme={selectedActivities.includes(activity) ? "green" : "gray"}
                       borderRadius="full"
                     />
                     <Text fontSize="10px">{activity.name}</Text>
@@ -211,10 +244,10 @@ function DailyLogInput() {
           <SimpleGrid spacing={1} columns="5">
             {showAllGoals
               ? goals.map((goal, index) => (
-                  <Box key={index} onClick={() => handleAddGoal(goal.name)}>
+                  <Box key={index} onClick={() => handleAddGoal(goal)}>
                     <IconButton
                       icon={<img src={goal.icon} alt={goal.name} style={{ maxWidth: "80%", maxHeight: "80%" }} />}
-                      colorScheme={selectedGoals.includes(goal.name) ? "green" : "gray"}
+                      colorScheme={selectedGoals.includes(goal) ? "green" : "gray"}
                       borderRadius="full"
                     />
                     <Text fontSize="10px">{goal.name}</Text>
@@ -246,6 +279,8 @@ function DailyLogInput() {
             onChange={(e) => setNotes(e.target.value)}
           />
         </FormControl>
+        {error && <Text fontSize="lg" color="red">{error}</Text>}
+        {errorMessage && <Text mt="10px" mb="15px" color="red.500" fontSize="xs">{errorMessage}</Text>}
         <Button mb="200px" type="submit">Submit</Button>
       </form>
     </Box>

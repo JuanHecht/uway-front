@@ -62,14 +62,14 @@ function Landing() {
     return (
         <Box>
             <PhraseOfDay />
-            <Card m="5px">
-                <CardHeader display="flex" flexDir="column">
-                    <Box>
+            <Card bg="#F7FAFC" m="5px">
+                <CardHeader alignItems="center" display="flex" flexDir="column">
+                    <Box textAlign="center">
                         <Heading size="lg" mb="10px" >Track your mental health</Heading>
 
                     </Box>
                     <Flex>
-                        <Text fontSize="xs">Submit progress daily, we'll help you find inner peace</Text>
+                        <Text mr="6%" fontSize="xs">Submit progress daily, we'll help you find inner peace</Text>
                         <Link to="/signup"><Button color="white" bg="black">Create account</Button></Link>
                     </Flex>
 

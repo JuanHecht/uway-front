@@ -40,7 +40,7 @@ function SignUp() {
     return (
         <Box p={2} maxW="375px" h="600px" m="auto">
             <Heading as="h1" fontSize="2xl" textAlign="center" mt={2}>Sign Up</Heading>
-            {error && <Text color="red.500" textAlign="center">{error}</Text>}
+            
             <Box mt={2} textAlign="center">
                 <Image src="/images/login.png" maxW="40%" mx="auto" />
             </Box>
@@ -80,6 +80,7 @@ function SignUp() {
                         placeholder="Enter your password"
                     />
                 </FormControl>
+                {error && <Text mt="15px" color="red" textAlign="center">{error}</Text>}
                 <Button type="submit" mt={5} w="100%" bg="black" color="white">Sign Up</Button>
 
                 <Box textAlign="center" mt={5}>

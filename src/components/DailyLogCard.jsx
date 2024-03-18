@@ -17,7 +17,10 @@ import {
   Heading,
   Text,
   Avatar,
-  StackDivider
+  StackDivider,
+  IconButton,
+  Flex,
+  SimpleGrid
 } from "@chakra-ui/react";
 
 function DailyLogCard({ dailyLog }) {
@@ -50,9 +53,9 @@ function DailyLogCard({ dailyLog }) {
         <CardHeader mb="0" pb="0" pt="8px">
           <Box display="flex" justifyContent="space-between">
             <Box>
-          <Avatar name="mood" src={mapMoodToNameAndImage(dailyLog.mood)} />
-          </Box>
-          <Box mt="10px" fontWeight="bold">{dailyLog.createdAt.slice(0,10)}</Box>
+              <Avatar name="mood" src={mapMoodToNameAndImage(dailyLog.mood)} />
+            </Box>
+            <Box mt="10px" fontWeight="bold">{dailyLog.createdAt.slice(0, 10)}</Box>
           </Box>
         </CardHeader>
 
@@ -105,26 +108,42 @@ function DailyLogCard({ dailyLog }) {
                       {dailyLog.energyLevel}
                     </Text>
                   </Box>
-                  {dailyLog.activities.map((activity, index) => (
-                    <Box key={index}>
-                      <Heading size="xs" textTransform="uppercase">
-                        Activities
-                      </Heading>
-                      <Text pt="2" fontSize="sm">
-                        {activity}
-                      </Text>
-                    </Box>
-                  ))}
-                  {dailyLog.goals.map((goal, index) => (
-                    <Box key={index}>
-                      <Heading size="xs" textTransform="uppercase">
-                        Goals
-                      </Heading>
-                      <Text pt="2" fontSize="sm">
-                        {goal}
-                      </Text>
-                    </Box>
-                  ))}
+                  <Box>
+                    <Heading size="xs" textTransform="uppercase">
+                      Activities
+                    </Heading>
+                    <SimpleGrid columns="3">
+                      {dailyLog.activities.map((activity) => (
+                        <Box key={activity._id}>
+                          <IconButton
+                            icon={<img src={activity.icon} alt={activity.name} style={{ maxWidth: "80%", maxHeight: "80%" }} />}
+                            borderRadius="full"
+                          />
+                          <Text pt="2" fontSize="sm">
+                            {activity.name}
+                          </Text>
+                        </Box>
+                      ))}
+                    </SimpleGrid>
+                  </Box>
+                  <Box>
+                    <Heading size="xs" textTransform="uppercase">
+                      Goals
+                    </Heading>
+                    <SimpleGrid columns="3">
+                      {dailyLog.goals.map((goal) => (
+                        <Box key={goal._id}>
+                          <IconButton
+                            icon={<img src={goal.icon} alt={goal.name} style={{ maxWidth: "80%", maxHeight: "80%" }} />}
+                            borderRadius="full"
+                          />
+                          <Text pt="2" fontSize="sm">
+                            {goal.name}
+                          </Text>
+                        </Box>
+                      ))}
+                    </SimpleGrid>
+                  </Box>
                   <Box>
                     <Heading size="xs" textTransform="uppercase">
                       Sleep Time

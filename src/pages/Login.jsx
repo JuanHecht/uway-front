@@ -31,7 +31,7 @@ function Login() {
         navigate("/home");
       })
       .catch((error) => {
-        const errorDescription = error.data.message;
+        const errorDescription = error.response.data.message;
         setError(errorDescription);
       });
   };
@@ -63,8 +63,9 @@ function Login() {
             placeholder="Enter your password"
           />
         </FormControl>
+        {error && <Text mt="15px" textAlign="center" color="red.500">{error}</Text>}
         <Button type="submit" mt={5} w="100%" bg="black" color="white">Login</Button>
-        {error && <Text color="red.500" mt={2}>{error}</Text>}
+        
         <Box textAlign="center" mt={5}>
           <Text color="grey">Don't have an Account? </Text>
           <ChakraLink  href="/signup" color="black.500" textDecoration="underline" >
