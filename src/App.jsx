@@ -55,6 +55,7 @@ import Landing from './pages/Landing'
 function App() {
   const location = useLocation();
   const isLandingPage = location.pathname === '/';
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
 
   return (
     <div>
@@ -70,7 +71,7 @@ function App() {
         <Route path="/goals" element={<IsPrivate><Goals/></IsPrivate>} />
         {/* <Route path="/monthlylog" element={<IsPrivate><MonthlyLog/></IsPrivate>} /> */}
       </Routes>
-      {!isLandingPage && <BottomNavBar />}
+      {!isLandingPage && !isAuthPage && <BottomNavBar />}
     </div>
   )
 }

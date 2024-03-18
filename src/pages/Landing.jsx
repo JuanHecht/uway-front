@@ -18,7 +18,7 @@ import {
     Button,
     Text,
     Flex,
-    Heading
+    Heading, Card, CardHeader
 } from '@chakra-ui/react';
 
 import { useState, useContext } from 'react';
@@ -62,9 +62,22 @@ function Landing() {
     return (
         <Box>
             <PhraseOfDay />
-            <Text mb="25px" bg="#F7FAFC" textAlign="center" fontSize="20px">
+            <Card m="5px">
+                <CardHeader display="flex" flexDir="column">
+                    <Box>
+                        <Heading size="lg" mb="10px" >Track your mental health</Heading>
+
+                    </Box>
+                    <Flex>
+                        <Text fontSize="xs">Submit progress daily, we'll help you find inner peace</Text>
+                        <Link to="/signup"><Button color="white" bg="black">Create account</Button></Link>
+                    </Flex>
+
+                </CardHeader>
+            </Card>
+            {/* <Text mb="25px" bg="#F7FAFC" textAlign="center" fontSize="20px">
                 Get control of your life using UWAY, by updating your progress daily we'll help you find your purpose<Link to="/signup"><Button bg="grey">Create account</Button></Link> 
-            </Text>
+            </Text> */}
             <Flex direction="column" textAlign="center">
                 <Text mb="10px">This week's preview</Text>
                 <FullCalendar
