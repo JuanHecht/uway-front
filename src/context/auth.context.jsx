@@ -13,6 +13,7 @@ function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [moodNum, setMoodNum] = useState(null);
   const [dailyLogs, setDailyLogs] = useState([]);
+  const [todayLog, setTodayLog] = useState(false);
 
   /* Save the Login's JWT Token in our Browser' Storage */
   const saveToken = (token) => {
@@ -33,61 +34,82 @@ function AuthProviderWrapper(props) {
           setIsLoggedIn(true);
           setIsLoading(false);
         })
-        .catch(()=>{
+        .catch(() => {
           setUser(null);
           setIsLoggedIn(false);
           setIsLoading(false);
         })
     }
     else {
-        setUser(null);
-        setIsLoggedIn(false);
+      setUser(null);
+      setIsLoggedIn(false);
     }
   };
 
-  const removeToken = () =>{
+  const removeToken = () => {
     localStorage.removeItem("authToken");
   }
 
-  const logOut = () =>{
+  const logOut = () => {
     removeToken();
     authenticateUser();
   }
 
-   useEffect(() => {
-     authenticateUser();
-   }, []);
+  useEffect(() => {
+    authenticateUser();
+  }, []);
 
 
 
-   useEffect(() => {
-       if (user && user._id) { // Check if user and user._id are defined
-           axios.get(`https://uway-back.onrender.com/logs/dailylogs/${user._id}`, {
-               headers: {
-                   Authorization: `Bearer ${localStorage.getItem("authToken")}`
-               }
-           })
-               .then((response) => setDailyLogs(response.data))
-               .catch((error) => console.log(error));
-       }
-   }, [user]);
+  /* useEffect(() => {
+      if (user && user._id) { // Check if user and user._id are defined
+          axios.get(`https://uway-back.onrender.com/logs/dailylogs/${user._id}`, {
+              headers: {
+                  Authorization: `Bearer ${localStorage.getItem("authToken")}`
+              }
+          })
+              .then((response) => setDailyLogs(response.data))
+              .catch((error) => console.log(error));
+      }
+  }, [user]); */
+  useEffect(() => {
+    if (user && user._id) {
+      axios.get(`https://uway-back.onrender.com/logs/dailylogs/${user._id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        }
+      })
+        .then((response) => {
+          setDailyLogs(response.data);
+          // Check if a log exists for today
+          const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+          const foundTodayLog = response.data.some(log => {
+            const logDate = log.createdAt.split('T')[0]; // Extract the date part from createdAt
+            return logDate === today;
+          });
+          setTodayLog(foundTodayLog);
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [user, dailyLogs]);
 
-   const getMoodAndImageUrl = (value) => {
+
+  const getMoodAndImageUrl = (value) => {
     let mood, imageUrl, moodNum;
 
-    if (value < 15) {
+    if (value < 20) {
       setMoodNum(1);
       mood = "Very sad";
       imageUrl = "/images/verysad_360.png";
-    } else if (value >= 15 && value <= 35) {
+    } else if (value >= 20 && value <= 40) {
       setMoodNum(2);
       mood = "Sad";
       imageUrl = "/images/sad_360.png";
-    } else if (value > 35 && value <= 65) {
+    } else if (value > 40 && value <= 60) {
       setMoodNum(3);
       mood = "Normal";
       imageUrl = "/images/normal_360.png";
-    } else if (value > 65 && value <= 90) {
+    } else if (value > 60 && value <= 80) {
       setMoodNum(4);
       mood = "Happy";
       imageUrl = "/images/happy_360.png";
@@ -99,12 +121,12 @@ function AuthProviderWrapper(props) {
     return { mood, moodNum, imageUrl };
   };
 
-  return(
-    <AuthContext.Provider value={{isLoggedIn, isLoading, getMoodAndImageUrl, moodNum,  user, saveToken, authenticateUser, logOut, dailyLogs}}>
-        {props.children}
+  return (
+    <AuthContext.Provider value={{ isLoggedIn, isLoading, getMoodAndImageUrl, moodNum, user, saveToken, authenticateUser, logOut, dailyLogs, todayLog }}>
+      {props.children}
     </AuthContext.Provider>
   )
 }
 
 
-export {AuthProviderWrapper, AuthContext};
+export { AuthProviderWrapper, AuthContext };

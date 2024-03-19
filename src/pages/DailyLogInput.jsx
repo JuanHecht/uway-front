@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../context/auth.context";
-import { UserContext } from '../context/user.context'
+import { UserContext } from '../context/user.context';
 import axios from 'axios';
 import {
   IconButton,
@@ -216,7 +216,7 @@ function DailyLogInput() {
                   <Box key={index} onClick={() => handleAddActivity(activity)}>
                     <IconButton
                       icon={<img src={activity.icon} alt={activity.name} style={{ maxWidth: "80%", maxHeight: "80%" }} />}
-                      colorScheme={selectedActivities.includes(activity.name) ? "green" : "gray"}
+                      colorScheme={selectedActivities.includes(activity) ? "green" : "gray"}
                       borderRadius="full"
                     />
                     <Text fontSize="10px">{activity.name}</Text>
@@ -254,10 +254,10 @@ function DailyLogInput() {
                   </Box>
                 ))
               : goals.slice(0, 5).map((goal, index) => (
-                  <Box key={index} onClick={() => handleAddGoal(goal.name)}>
+                  <Box key={index} onClick={() => handleAddGoal(goal)}>
                     <IconButton
                       icon={<img src={goal.icon} alt={goal.name} style={{ maxWidth: "80%", maxHeight: "80%" }} />}
-                      colorScheme={selectedGoals.includes(goal.name) ? "green" : "gray"}
+                      colorScheme={selectedGoals.includes(goal) ? "green" : "gray"}
                       borderRadius="full"
                     />
                     <Text fontSize="10px">{goal.name}</Text>
