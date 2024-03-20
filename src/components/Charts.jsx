@@ -5,6 +5,24 @@ import OftenTogether from './OftenTogether';
 
 import { Box } from '@chakra-ui/react';
 
+import image1 from '/images/verysad_360.png'
+import image2 from '/images/sad_360.png'
+import image3 from '/images/normal_360.png'
+import image4 from '/images/happy_360.png'
+import image5 from '/images/veryhappy_360.png'
+
+const images = [ image1, image2, image3, image4, image5];
+
+const CustomYAxisTick = (props) => {
+  const { x, y, payload } = props;
+  const imageIndex = payload.value; // Assuming the value corresponds to the image index
+  const imageSrc = images[imageIndex-1]; // Get the image source based on the index
+
+  return (
+    <image y={y - 10} xlinkHref={imageSrc} width={20} height={20} />
+  );
+};
+
 
 const Charts = () => {
     const { dailyLogs } = useContext(AuthContext);
@@ -43,10 +61,10 @@ const Charts = () => {
     return (
         <div style={{width:"100%"}}>
         <ResponsiveContainer >
-        <div style={{position:"relative", width:"100%", display:"flex", flexDirection:"column", justifyContent:"center"}} >
+        <div style={{position:"relative", width:"100%", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}} >
             <AreaChart
-                width={350}
-                height={300}
+                width={280}
+                height={280}
                 fontSize={10}
                 data={last7DaysLogs}
                 margin={{ top: 20, right: 0, left: -40, bottom: 50 }}
@@ -61,7 +79,7 @@ const Charts = () => {
                     dataKey="createdAt"
                     tickFormatter={formatDate} // Use tickFormatter to format the x-axis ticks
                 />
-                <YAxis dataKey= "mood" />
+                <YAxis dataKey= "mood" domain={[1, 5]} ticks={[ 1, 2, 3, 4, 5]} tick={<CustomYAxisTick />}/>
                 <Area type="monotone" dataKey="mood"  stroke="#8884d8" fillOpacity={1} fill="url(#mood)" />
                 <Line type="monotone" dataKey="mood"  stroke="#8884d8" fillOpacity={1} fill="url(#mood)" />
             </AreaChart>

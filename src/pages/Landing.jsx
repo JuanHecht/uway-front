@@ -69,8 +69,11 @@ function Landing() {
 
                     </Box>
                     <Flex>
-                        <Text mr="6%" fontSize="xs">Submit progress daily, we'll help you find inner peace</Text>
-                        <Link to="/signup"><Button color="white" bg="black">Create account</Button></Link>
+                        <Text mr="6%" fontSize="sm">Submit progress daily, we'll help you find inner peace</Text>
+                        <Flex direction="column" alignItems="center">
+                        <Link to="/login"><Button mb="5px" size="sm" width="140px" color="white" bg="black">Login</Button></Link>
+                        <Link to="/signup"><Button size="sm" width="140px" color="white" bg="black">Create account</Button></Link>
+                        </Flex>
                     </Flex>
 
                 </CardHeader>

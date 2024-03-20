@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { Box } from "@chakra-ui/react";
+import './Calendar.css'
 
 const MyCalendar = ({ dailyLogs }) => {
     const [loading, setLoading] = useState(true);
@@ -27,9 +29,9 @@ const MyCalendar = ({ dailyLogs }) => {
         /* console.log("Daily logs updated:", dailyLogs); */
         if (dailyLogs.length > 0) {
             const formattedEvents = dailyLogs.map(dailyLog => ({
-                title: '', 
+                title: '',
                 start: new Date(dailyLog.createdAt),
-                mood: dailyLog.mood 
+                mood: dailyLog.mood
             }));
             /* console.log("Formatted events:", formattedEvents); */
             setFormattedEvents(formattedEvents);
@@ -47,16 +49,22 @@ const MyCalendar = ({ dailyLogs }) => {
     } */
 
     return (
-        <div>
+        <Box>
             <FullCalendar
+                height="310px"
                 plugins={[dayGridPlugin]}
                 initialView="dayGridMonth"
                 events={formattedEvents}
                 eventContent={({ event }) => (
-                    <img src={`${mapMoodToNameAndImage(event.extendedProps.mood)}`}  alt="" style={{ width: '100%', height: '100%' }} />
+                    <img src={`${mapMoodToNameAndImage(event.extendedProps.mood)}`} alt="" style={{ width: '100%', height: '100%' }} />
                 )}
+                headerToolbar={{
+                    start: 'prev', // will normally be on the left. if RTL, will be on the right
+                    center: 'title',
+                    end: 'next' // will normally be on the right. if RTL, will be on the left
+                }}
             />
-        </div>
+        </Box>
     );
 };
 

@@ -31,7 +31,9 @@ import DailyLogCard from "../components/DailyLogCard"; // Import DailyLogCard
 import { useContext, useState, useEffect } from "react";
 
 import { AuthContext } from "../context/auth.context";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Image, Flex, Text } from "@chakra-ui/react";
+
+import congratulations from '/images/applause.png'
 
 
 function Homepage() {
@@ -43,11 +45,20 @@ function Homepage() {
             <PhraseOfDay />
             <CalendarPreview dailyLogs={dailyLogs} />
             {todayLog ? null : <RoundSlider />}
-            {todayLog && 
-            <Box mt="25px">
-                <Heading textAlign="center" size="md">Congratulations! You already logged for today.</Heading>
-                {dailyLogs.map(log => log.createdAt.slice(0, 10) === new Date().toISOString().split('T')[0] && <DailyLogCard dailyLog={log} key={log._id} />)}
-            </Box>
+            {todayLog &&
+                <Box p="10px" bg="yellow.50" mt="25px">
+                    <Flex>
+                        <Image boxSize='100px'
+                            objectFit='cover' 
+                            src={congratulations} 
+                            mr="10px"/>
+                        <Flex justifyContent="center" textAlign="center" direction="column">
+                            <Heading textAlign="center" size="md">Wonderful job!</Heading>
+                            <Text>Your daily log for today was submitted </Text>
+                        </Flex>
+                    </Flex>
+                    {dailyLogs.map(log => log.createdAt.slice(0, 10) === new Date().toISOString().split('T')[0] && <DailyLogCard dailyLog={log} key={log._id} />)}
+                </Box>
             }
         </Box>
     )

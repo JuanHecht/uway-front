@@ -1,0 +1,15 @@
+.fc .fc-toolbar.fc-header-toolbar {
+    margin: 5px;
+  }
+  .fc .fc-toolbar-title{
+    font-size: 20px;
+  }
+.fc .fc-button{
+    height: 27px;
+    padding: 0 10px;
+    margin: 0 5px;
+}
+.fc .fc-button:not(:disabled){
+    margin-left: 35px;
+    margin-right: 35px;
+}
